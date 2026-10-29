@@ -1,4 +1,5 @@
 {
+    "version": 1,
     "name": "XRI Default Input Actions",
     "maps": [
         {
@@ -563,7 +564,7 @@
                 {
                     "name": "third",
                     "id": "c98fc8c8-7fc6-4909-89b6-c5b7568e7275",
-                    "path": "",
+                    "path": "<PicoHandInteraction>{LeftHand}/devicePose/rotation",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -607,7 +608,7 @@
                 {
                     "name": "third",
                     "id": "ae101942-9eaa-4c53-a388-cafc3fd89bdf",
-                    "path": "",
+                    "path": "<PicoHandInteraction>{LeftHand}/devicePose/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1357,6 +1358,72 @@
                     "action": "Translate Manipulation",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ed8a3c17-a024-4b72-9b3e-91e9a45f459f",
+                    "path": "<PicoHandInteraction>{LeftHand}/graspFirm",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "66985eea-6867-41b2-a819-634ab41719c3",
+                    "path": "<PicoHandInteraction>{LeftHand}/pinchTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "36287c22-4b94-455b-ab36-fd83590aa5ee",
+                    "path": "<PicoHandInteraction>{LeftHand}/graspValue",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select Value",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "559f3cab-fac1-4c57-a4a4-32f36cc3716c",
+                    "path": "<PicoHandInteraction>{LeftHand}/pinchValue",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select Value",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a35f033a-9328-4635-b53a-00937ce4d303",
+                    "path": "<PicoHandInteraction>{LeftHand}/pointerActivated",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UI Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "6321aaf1-d054-4e5f-8cfa-75efef6023d5",
+                    "path": "<PicoHandInteraction>{LeftHand}/pointerActivateValue",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UI Press Value",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
@@ -1728,7 +1795,7 @@
                 {
                     "name": "third",
                     "id": "b9ecb60d-341e-47cf-b50a-41d5815af8b0",
-                    "path": "",
+                    "path": "<PicoHandInteraction>{RightHand}/devicePose/rotation",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -1772,7 +1839,7 @@
                 {
                     "name": "third",
                     "id": "3ef0a781-60c5-48bc-a584-f95553f8ae0a",
-                    "path": "",
+                    "path": "<PicoHandInteraction>{RightHand}/devicePose/position",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -2030,6 +2097,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Hand Poke Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "71014ff6-0239-4c7b-8f05-9db980a7f11a",
+                    "path": "<PicoHandInteraction>{RightHand}/isTracked",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Is Tracked",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3dd6948d-f116-4893-a810-e515a71e2f96",
+                    "path": "<PicoHandInteraction>{RightHand}/trackingState",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tracking State",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -2542,6 +2631,72 @@
                     "processors": "ScaleVector2(x=0),StickDeadzone",
                     "groups": "",
                     "action": "Translate Manipulation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4dbccbca-67fe-4e13-b50b-59b15301f5a2",
+                    "path": "<PicoHandInteraction>{RightHand}/graspFirm",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9772b63a-0164-4081-9a5b-1dbe2d6e5cb7",
+                    "path": "<PicoHandInteraction>{RightHand}/pinchTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "77ead5e5-e1ff-405c-bea1-703b37da2127",
+                    "path": "<PicoHandInteraction>{RightHand}/graspValue",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select Value",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e91468cf-70d5-44e0-a78f-06a687934458",
+                    "path": "<PicoHandInteraction>{RightHand}/pinchValue",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select Value",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d857f0fd-3e72-42d6-8784-d911599eed98",
+                    "path": "<PicoHandInteraction>{RightHand}/pointerActivated",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UI Press",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "73b31f37-890d-424e-8617-6de11211b528",
+                    "path": "<PicoHandInteraction>{RightHand}/pointerActivateValue",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "UI Press Value",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

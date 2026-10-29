@@ -1,11 +1,14 @@
 using System;
 using System.IO;
 using System.Linq;
+using ByteDance.PICO.Interaction;
+using PicShow.PicoInteraction;
 using TMPro;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.TextCore.LowLevel;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit.UI;
@@ -48,6 +51,7 @@ namespace PicShow.Editor
             if (Application.isPlaying) throw new InvalidOperationException("Exit Play Mode before building.");
             if (UnityEngine.Object.FindAnyObjectByType<GalleryCarousel>() != null)
                 throw new InvalidOperationException("The scene already contains a gallery. Edit the existing instance.");
+            GalleryInteractionSceneMigrator.MigrateActiveScene();
             EnsureFolder(Root + "/Data");
             EnsureFolder(Root + "/UI");
             EnsureFolder(Root + "/Prefabs");
@@ -113,6 +117,7 @@ namespace PicShow.Editor
             }
             var carousel = root.gameObject.AddComponent<GalleryCarousel>();
             carousel.Configure(catalog, cards, tabs, dots, previous, next, style, meta, title, description, rule);
+            ConfigurePicoInteraction(root.gameObject, carousel, stage);
             root.gameObject.SetActive(true);
             PrefabUtility.SaveAsPrefabAssetAndConnect(root.gameObject, PrefabPath, InteractionMode.AutomatedAction);
             EnsureEventSystem();
@@ -122,6 +127,116 @@ namespace PicShow.Editor
             Selection.activeGameObject = root.gameObject;
             SceneView.lastActiveSceneView?.FrameSelected();
             Debug.Log("PicShow gallery saved in the active scene and as an editable prefab.");
+        }
+
+        [MenuItem("PicShow/Upgrade PICO Multimodal Interaction")]
+        public static void UpgradePicoInteraction()
+        {
+            if (Application.isPlaying)
+                throw new InvalidOperationException("Exit Play Mode before upgrading.");
+
+            GalleryInteractionSceneMigrator.MigrateActiveScene();
+            GameObject root = PrefabUtility.LoadPrefabContents(PrefabPath);
+            try
+            {
+                var carousel = root.GetComponent<GalleryCarousel>();
+                var stage = root.transform.Find("Three card stage") as RectTransform;
+                if (carousel == null || stage == null)
+                    throw new InvalidOperationException("The gallery prefab is missing its carousel or card stage.");
+
+                ConfigurePicoInteraction(root, carousel, stage);
+                PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+
+            AssetDatabase.SaveAssets();
+            AssetDatabase.ImportAsset(PrefabPath, ImportAssetOptions.ForceUpdate);
+            EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+            EditorSceneManager.SaveOpenScenes();
+        }
+
+        // Prefab-only entry point used by batchmode to apply PICO bindings without touching scenes.
+        public static void RefreshPicoBindings()
+        {
+            if (Application.isPlaying)
+                throw new InvalidOperationException("Exit Play Mode before refreshing PICO bindings.");
+
+            GameObject root = PrefabUtility.LoadPrefabContents(PrefabPath);
+            try
+            {
+                var carousel = root.GetComponent<GalleryCarousel>();
+                var stage = root.transform.Find("Three card stage") as RectTransform;
+                if (carousel == null || stage == null)
+                    throw new InvalidOperationException("The gallery prefab is missing its carousel or card stage.");
+
+                ConfigurePicoInteraction(root, carousel, stage);
+                PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+
+            AssetDatabase.SaveAssets();
+            AssetDatabase.ImportAsset(PrefabPath, ImportAssetOptions.ForceUpdate);
+        }
+
+        private static void ConfigurePicoInteraction(
+            GameObject root,
+            GalleryCarousel carousel,
+            RectTransform stage)
+        {
+            // All three card slots are recycled by the carousel, so every slot needs the
+            // PICO enhanced button; the center card stays non-interactable at runtime.
+            Button[] interactiveButtons = carousel.Tabs.Select(tab => tab.Button)
+                .Concat(carousel.Dots.Select(dot => dot.Button))
+                .Concat(new[] { carousel.PreviousButton, carousel.NextButton })
+                .Concat(carousel.Cards.Select(card => card.Button))
+                .ToArray();
+
+            foreach (Button button in interactiveButtons)
+            {
+                if (button.GetComponent<PXR_EnhancedButton>() == null)
+                    button.gameObject.AddComponent<PXR_EnhancedButton>();
+            }
+
+            var adapter = root.GetComponent<GalleryPicoInteractionAdapter>() ??
+                root.AddComponent<GalleryPicoInteractionAdapter>();
+            adapter.Configure(interactiveButtons);
+
+            var controller = root.GetComponent<GalleryControllerNavigator>() ??
+                root.AddComponent<GalleryControllerNavigator>();
+            controller.Configure(
+                carousel,
+                FindActionReference("XRI Left Locomotion", "Move"),
+                FindActionReference("XRI Right Locomotion", "Move"));
+
+            var swipeSurface = stage.GetComponent<Image>() ?? stage.gameObject.AddComponent<Image>();
+            swipeSurface.color = Color.clear;
+            swipeSurface.raycastTarget = true;
+            if (stage.GetComponent<PXR_SwipeFrame>() == null)
+                stage.gameObject.AddComponent<PXR_SwipeFrame>();
+            var swipe = stage.GetComponent<GallerySwipeNavigator>() ??
+                stage.gameObject.AddComponent<GallerySwipeNavigator>();
+            swipe.Configure(carousel, 0.1f);
+        }
+
+        private static InputActionReference FindActionReference(string mapName, string actionName)
+        {
+            const string path =
+                "Assets/Samples/XR Interaction Toolkit/3.7.0/Starter Assets/XRI Default Input Actions.inputactions";
+            var reference = AssetDatabase.LoadAllAssetsAtPath(path)
+                .OfType<InputActionReference>()
+                .FirstOrDefault(candidate =>
+                    candidate.action != null &&
+                    candidate.action.actionMap.name == mapName &&
+                    candidate.action.name == actionName);
+            if (reference == null)
+                throw new InvalidOperationException($"Missing input action reference: {mapName}/{actionName}");
+            return reference;
         }
 
         private static GalleryCarousel.Card BuildCard(Transform parent, int index)

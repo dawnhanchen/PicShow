@@ -1,6 +1,16 @@
 {
   "name": "PicShow.Editor.Tests",
-  "references": ["PicShow.Runtime", "Unity.ugui", "Unity.TextMeshPro", "Unity.XR.Interaction.Toolkit"],
+  "references": [
+    "PicShow.Runtime",
+    "PicShow.PicoInteraction",
+    "ByteDance.PICO.Interaction",
+    "ByteDance.PICO.XR",
+    "Unity.ugui",
+    "Unity.TextMeshPro",
+    "Unity.XR.CoreUtils",
+    "Unity.XR.Interaction.Toolkit",
+    "Unity.InputSystem"
+  ],
   "includePlatforms": ["Editor"],
   "optionalUnityReferences": ["TestAssemblies"]
 }

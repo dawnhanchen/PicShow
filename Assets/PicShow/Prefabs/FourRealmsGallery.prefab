@@ -844,6 +844,7 @@ GameObject:
   - component: {fileID: 5046691681128833456}
   - component: {fileID: 7540510380205507293}
   - component: {fileID: 4635800092503295428}
+  - component: {fileID: 7209778792925693325}
   m_Layer: 0
   m_Name: Work 5
   m_TagString: Untagged
@@ -951,6 +952,27 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 7540510380205507293}
   m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &7209778792925693325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279851529395576582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
+  onSingleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onDoubleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onLongPress:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &1507052162145057666
@@ -1324,6 +1346,7 @@ GameObject:
   - component: {fileID: 2657779221195834189}
   - component: {fileID: 1920457522401727243}
   - component: {fileID: 4183760689288697993}
+  - component: {fileID: 726623408314455513}
   m_Layer: 0
   m_Name: "Style \u6C34\u5F69\u6CBB\u6108"
   m_TagString: Untagged
@@ -1431,6 +1454,27 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 1920457522401727243}
   m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &726623408314455513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853713276490669314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
+  onSingleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onDoubleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onLongPress:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &1862720420631017520
@@ -1595,6 +1639,7 @@ GameObject:
   - component: {fileID: 5719708827027824427}
   - component: {fileID: 3802716298596867479}
   - component: {fileID: 2575586346376397049}
+  - component: {fileID: 6193672429864846371}
   m_Layer: 0
   m_Name: Previous
   m_TagString: Untagged
@@ -1702,6 +1747,27 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 3802716298596867479}
   m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &6193672429864846371
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1960042403124910208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
+  onSingleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onDoubleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onLongPress:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &2403379727503576782
@@ -1930,6 +1996,8 @@ GameObject:
   - component: {fileID: 2478911120930633134}
   - component: {fileID: 3606496421675591594}
   - component: {fileID: 2676976559183199856}
+  - component: {fileID: 3029549434555894932}
+  - component: {fileID: 5792085110901038678}
   m_Layer: 0
   m_Name: FourRealmsGallery
   m_TagString: Untagged
@@ -2127,6 +2195,50 @@ MonoBehaviour:
   sideScale: 0.78
   sideAngle: 24
   transitionDuration: 0.38
+--- !u!114 &3029549434555894932
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2430377955931369779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47ccb4f2c0dcd6b4c88738372d52f93d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PicShow.PicoInteraction::PicShow.PicoInteraction.GalleryPicoInteractionAdapter
+  buttons:
+  - {fileID: 4183760689288697993}
+  - {fileID: 4791723039564820178}
+  - {fileID: 826097889240051812}
+  - {fileID: 8714521558174629842}
+  - {fileID: 2399138336941319432}
+  - {fileID: 5683331144246866017}
+  - {fileID: 5014947881667215796}
+  - {fileID: 6415056791730142330}
+  - {fileID: 4635800092503295428}
+  - {fileID: 2575586346376397049}
+  - {fileID: 2592396058517303297}
+  - {fileID: 4164906012412388060}
+  - {fileID: 201002382689169596}
+  - {fileID: 3997288965052889282}
+--- !u!114 &5792085110901038678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2430377955931369779}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 725e093b2b8518d4a86aede6dabacb5a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PicShow.PicoInteraction::PicShow.PicoInteraction.GalleryControllerNavigator
+  gallery: {fileID: 2676976559183199856}
+  leftMove: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  rightMove: {fileID: -8198699208435500284, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  triggerThreshold: 0.7
+  releaseThreshold: 0.35
 --- !u!1 &2516813365934284710
 GameObject:
   m_ObjectHideFlags: 0
@@ -2815,6 +2927,7 @@ GameObject:
   - component: {fileID: 2078134090067904589}
   - component: {fileID: 8544716822771578158}
   - component: {fileID: 826097889240051812}
+  - component: {fileID: 8159897745093602279}
   m_Layer: 0
   m_Name: "Style \u8D5B\u535A\u670B\u514B"
   m_TagString: Untagged
@@ -2922,6 +3035,27 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 8544716822771578158}
   m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8159897745093602279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4026016418568454431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
+  onSingleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onDoubleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onLongPress:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &4245972385299880199
@@ -3285,6 +3419,7 @@ GameObject:
   - component: {fileID: 7194086874082380074}
   - component: {fileID: 6707279087279840180}
   - component: {fileID: 6415056791730142330}
+  - component: {fileID: 3243712569113681270}
   m_Layer: 0
   m_Name: Work 4
   m_TagString: Untagged
@@ -3394,6 +3529,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3243712569113681270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4688689928550109325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
+  onSingleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onDoubleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onLongPress:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5250977431144556903
 GameObject:
   m_ObjectHideFlags: 0
@@ -3406,6 +3562,7 @@ GameObject:
   - component: {fileID: 5734203354561879765}
   - component: {fileID: 3574048242099231424}
   - component: {fileID: 8714521558174629842}
+  - component: {fileID: 7737881028893924755}
   m_Layer: 0
   m_Name: "Style \u8D85\u73B0\u5B9E\u5947\u5E7B"
   m_TagString: Untagged
@@ -3513,6 +3670,27 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 3574048242099231424}
   m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &7737881028893924755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5250977431144556903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
+  onSingleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onDoubleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onLongPress:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &5435989641061066715
@@ -3664,6 +3842,7 @@ GameObject:
   - component: {fileID: 6806328599609728337}
   - component: {fileID: 7576320578643661928}
   - component: {fileID: 2592396058517303297}
+  - component: {fileID: 5076143180343865935}
   m_Layer: 0
   m_Name: Next
   m_TagString: Untagged
@@ -3773,6 +3952,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5076143180343865935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5714058122135158341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
+  onSingleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onDoubleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onLongPress:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &5731303562809737927
 GameObject:
   m_ObjectHideFlags: 0
@@ -3782,6 +3982,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 550017542292345477}
+  - component: {fileID: 7415236839784658487}
+  - component: {fileID: 4041290150373904686}
+  - component: {fileID: 4659492354666799408}
+  - component: {fileID: 2111679855339821061}
   m_Layer: 0
   m_Name: Three card stage
   m_TagString: Untagged
@@ -3811,6 +4015,70 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -87}
   m_SizeDelta: {x: 2500, y: 720}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &7415236839784658487
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5731303562809737927}
+  m_CullTransparentMesh: 1
+--- !u!114 &4041290150373904686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5731303562809737927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &4659492354666799408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5731303562809737927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd2f71d35fd13814b871a70a44aaf745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_SwipeFrame
+--- !u!114 &2111679855339821061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5731303562809737927}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 740ad9040df3d8d4ead2c7e79c8fe8a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: PicShow.PicoInteraction::PicShow.PicoInteraction.GallerySwipeNavigator
+  gallery: {fileID: 2676976559183199856}
+  commitThreshold: 0.1
 --- !u!1 &6096449862759155825
 GameObject:
   m_ObjectHideFlags: 0
@@ -3898,6 +4166,7 @@ GameObject:
   - component: {fileID: 3460903730098697916}
   - component: {fileID: 4086666223892831674}
   - component: {fileID: 4791723039564820178}
+  - component: {fileID: 493641676681141662}
   m_Layer: 0
   m_Name: "Style \u73B0\u4EE3\u90FD\u5E02"
   m_TagString: Untagged
@@ -4007,6 +4276,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &493641676681141662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6180216928742367160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
+  onSingleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onDoubleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onLongPress:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &6306206592621110485
 GameObject:
   m_ObjectHideFlags: 0
@@ -4094,6 +4384,7 @@ GameObject:
   - component: {fileID: 1162741306364823931}
   - component: {fileID: 6477647407652970273}
   - component: {fileID: 5683331144246866017}
+  - component: {fileID: 8474745073832442824}
   m_Layer: 0
   m_Name: Work 2
   m_TagString: Untagged
@@ -4201,6 +4492,27 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 6477647407652970273}
   m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &8474745073832442824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6510717184695739892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
+  onSingleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onDoubleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onLongPress:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &6749951243881201490
@@ -4352,6 +4664,7 @@ GameObject:
   - component: {fileID: 4510023633661172298}
   - component: {fileID: 3349262908710366630}
   - component: {fileID: 5014947881667215796}
+  - component: {fileID: 694925477541149242}
   m_Layer: 0
   m_Name: Work 3
   m_TagString: Untagged
@@ -4459,6 +4772,27 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 3349262908710366630}
   m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &694925477541149242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6791669875382511263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
+  onSingleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onDoubleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onLongPress:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &6869593506943929283
@@ -4620,6 +4954,7 @@ GameObject:
   - component: {fileID: 6747329535560389726}
   - component: {fileID: 8862182679295859656}
   - component: {fileID: 2399138336941319432}
+  - component: {fileID: 192408936959317506}
   m_Layer: 0
   m_Name: Work 1
   m_TagString: Untagged
@@ -4727,6 +5062,27 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 8862182679295859656}
   m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &192408936959317506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7100022587857556488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
+  onSingleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onDoubleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onLongPress:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &7152653798672503434
@@ -4952,6 +5308,7 @@ GameObject:
   - component: {fileID: 6064396795365340539}
   - component: {fileID: 185522706421056661}
   - component: {fileID: 4164906012412388060}
+  - component: {fileID: 7420779564574098428}
   m_Layer: 0
   m_Name: Card 0
   m_TagString: Untagged
@@ -5040,6 +5397,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7420779564574098428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7416021523920356584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
+  onSingleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onDoubleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onLongPress:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8200488018929437250
 GameObject:
   m_ObjectHideFlags: 0
@@ -5126,6 +5504,7 @@ GameObject:
   - component: {fileID: 4708304207988152543}
   - component: {fileID: 4217334351117670037}
   - component: {fileID: 201002382689169596}
+  - component: {fileID: 2421714411324184031}
   m_Layer: 0
   m_Name: Card 1
   m_TagString: Untagged
@@ -5214,6 +5593,27 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2421714411324184031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8205857979745793150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
+  onSingleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onDoubleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onLongPress:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &8399814167491635133
 GameObject:
   m_ObjectHideFlags: 0
@@ -5225,6 +5625,7 @@ GameObject:
   - component: {fileID: 9100404631189386012}
   - component: {fileID: 3438658666224097171}
   - component: {fileID: 3997288965052889282}
+  - component: {fileID: 199606077158581254}
   m_Layer: 0
   m_Name: Card 2
   m_TagString: Untagged
@@ -5311,6 +5712,27 @@ MonoBehaviour:
   m_Interactable: 1
   m_TargetGraphic: {fileID: 4195824830051870831}
   m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &199606077158581254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8399814167491635133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
+  onSingleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onDoubleClick:
+    m_PersistentCalls:
+      m_Calls: []
+  onLongPress:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &8404477993087318003

@@ -1,0 +1,12 @@
+{
+  "name": "PicShow.PicoInteraction",
+  "rootNamespace": "PicShow.PicoInteraction",
+  "references": [
+    "PicShow.Runtime",
+    "ByteDance.PICO.Interaction",
+    "ByteDance.PICO.XR",
+    "Unity.XR.Interaction.Toolkit",
+    "Unity.InputSystem",
+    "Unity.ugui"
+  ]
+}

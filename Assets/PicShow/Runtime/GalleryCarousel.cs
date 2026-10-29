@@ -61,6 +61,7 @@ namespace PicShow
         private static readonly Color Ink = new Color32(237, 241, 233, 255);
         private static readonly Color Muted = new Color32(172, 185, 180, 255);
         private CarouselState state;
+        private GalleryInputGate inputGate;
         private Coroutine transition;
         private bool bound;
 
@@ -107,17 +108,19 @@ namespace PicShow
             if (!EnsureState()) return;
             if (!bound)
             {
-                previous.onClick.AddListener(() => Move(-1));
-                next.onClick.AddListener(() => Move(1));
+                previous.onClick.AddListener(() => Submit(GalleryInputCommand.Move(-1)));
+                next.onClick.AddListener(() => Submit(GalleryInputCommand.Move(1)));
                 for (int i = 0; i < tabs.Length; i++)
                 {
                     int index = i;
-                    tabs[i].Button.onClick.AddListener(() => SelectCategory(index));
+                    tabs[i].Button.onClick.AddListener(
+                        () => Submit(GalleryInputCommand.SelectCategory(index)));
                 }
                 for (int i = 0; i < dots.Length; i++)
                 {
                     int index = i;
-                    dots[i].Button.onClick.AddListener(() => SelectWork(index));
+                    dots[i].Button.onClick.AddListener(
+                        () => Submit(GalleryInputCommand.SelectWork(index)));
                 }
                 foreach (var card in cards)
                 {
@@ -125,7 +128,7 @@ namespace PicShow
                     captured.Button.onClick.AddListener(() =>
                     {
                         int slot = Array.IndexOf(cards, captured) - 1;
-                        if (slot != 0) Move(slot);
+                        if (slot != 0) Submit(GalleryInputCommand.Move(slot));
                     });
                 }
                 bound = true;
@@ -150,9 +153,35 @@ namespace PicShow
         {
             var keyboard = Keyboard.current;
             if (keyboard == null) return;
-            if (keyboard.leftArrowKey.wasPressedThisFrame) Move(-1);
-            if (keyboard.rightArrowKey.wasPressedThisFrame) Move(1);
+            if (keyboard.leftArrowKey.wasPressedThisFrame) Submit(GalleryInputCommand.Move(-1));
+            if (keyboard.rightArrowKey.wasPressedThisFrame) Submit(GalleryInputCommand.Move(1));
         }
+
+        public bool ExecuteInput(GalleryInputCommand command, float timestamp)
+        {
+            if (!EnsureState()) return false;
+            if (inputGate == null) inputGate = new GalleryInputGate();
+            if (!inputGate.TryAccept(command, timestamp)) return false;
+
+            switch (command.Type)
+            {
+                case GalleryInputCommandType.Move:
+                    Move(command.Value);
+                    break;
+                case GalleryInputCommandType.SelectCategory:
+                    SelectCategory(command.Value);
+                    break;
+                case GalleryInputCommandType.SelectWork:
+                    SelectWork(command.Value);
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(command));
+            }
+
+            return true;
+        }
+
+        private void Submit(GalleryInputCommand command) => ExecuteInput(command, Time.unscaledTime);
 
         public void Move(int direction)
         {

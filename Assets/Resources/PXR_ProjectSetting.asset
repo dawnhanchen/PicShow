@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: PXR_ProjectSetting
   m_EditorClassIdentifier: ByteDance.PICO.XR::ByteDance.PICO.XR.PXR_ProjectSetting
   useContentProtect: 0
-  handTracking: 0
+  handTracking: 1
   adaptiveHand: 0
   highFrequencyHand: 0
   openMRC: 0
   faceTracking: 0
   lipsyncTracking: 0
-  eyeTracking: 0
-  eyetrackingCalibration: 0
+  eyeTracking: 1
+  eyetrackingCalibration: 1
   enableETFR: 0
   foveationLevel: -1
   latelatching: 0

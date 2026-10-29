@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using ByteDance.PICO.Interaction;
 using PicShow;
+using PicShow.PicoInteraction;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -104,6 +106,71 @@ namespace PicShow.Editor
                     AssertView(1, 1);
                     Require(!gallery.IsTransitioning, "Animation did not settle.");
                     Click(gallery.Tabs[0].Button);
+                    Click(gallery.Dots[0].Button);
+                }
+                else if (step == 9)
+                {
+                    AssertView(0, 0);
+                    Click(gallery.NextButton);
+                    gallery.NextButton.GetComponent<PXR_EnhancedButton>().onSingleClick.Invoke();
+                }
+                else if (step == 10)
+                {
+                    AssertView(0, 1);
+                    Click(gallery.Dots[0].Button);
+                }
+                else if (step == 11)
+                {
+                    AssertView(0, 0);
+                    var controller = gallery.GetComponent<GalleryControllerNavigator>();
+                    Require(controller != null, "Controller navigator is missing.");
+                    controller.ProcessAxes(0.8f, 0f, false, Time.unscaledTime);
+                    AssertView(0, 0);
+                    controller.ProcessAxes(0.8f, 0f, true, Time.unscaledTime + 0.01f);
+                }
+                else if (step == 12)
+                {
+                    AssertView(0, 1);
+                    var controller = gallery.GetComponent<GalleryControllerNavigator>();
+                    controller.ProcessAxes(0f, 0f, true, Time.unscaledTime);
+                    controller.ProcessAxes(-0.8f, 0f, true, Time.unscaledTime + 0.01f);
+                }
+                else if (step == 13)
+                {
+                    AssertView(0, 0);
+                    var swipe = gallery.GetComponentInChildren<GallerySwipeNavigator>();
+                    Require(swipe != null, "Swipe navigator is missing.");
+                    swipe.BeginSwipe(0f);
+                    swipe.UpdateSwipe(-0.2f);
+                    Require(swipe.EndSwipe(-0.2f, Time.unscaledTime), "Swipe did not commit.");
+                }
+                else if (step == 14)
+                {
+                    AssertView(0, 1);
+                    var manager = UnityEngine.Object.FindAnyObjectByType<PXR_InteractorManager>();
+                    Require(manager != null, "PICO interactor manager is missing.");
+                    var aim = UnityEngine.Object.FindAnyObjectByType<PXR_AimInteractor>(
+                        FindObjectsInactive.Include);
+                    Require(aim != null, "PICO eye-gaze aim interactor is missing.");
+                    manager.trackedHandModeStarted();
+                    Require(aim.gameObject.activeSelf,
+                        "Hand mode precondition must enable eye interaction.");
+                    manager.motionControllerModeStarted();
+                    Require(!aim.gameObject.activeSelf,
+                        "Controller mode must disable the eye cursor and eye-driven UI hover.");
+                    AssertView(0, 1);
+                }
+                else if (step == 15)
+                {
+                    AssertView(0, 1);
+                    var manager = UnityEngine.Object.FindAnyObjectByType<PXR_InteractorManager>();
+                    Require(manager != null, "PICO interactor manager is missing.");
+                    var aim = UnityEngine.Object.FindAnyObjectByType<PXR_AimInteractor>(FindObjectsInactive.Include);
+                    Require(aim != null, "PICO eye-gaze aim interactor is missing.");
+                    manager.trackedHandModeStarted();
+                    Require(aim.gameObject.activeSelf,
+                        "Hand mode must restore the eye cursor and eye-driven UI hover.");
+                    AssertView(0, 1);
                     Click(gallery.Dots[0].Button);
                 }
                 else

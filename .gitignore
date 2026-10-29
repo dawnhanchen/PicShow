@@ -21,3 +21,8 @@ Recordings/
 *.mdb
 sysinfo.txt
 .gradle/
+/gradle/
+/gradlew
+/gradlew.bat
+*.apk
+PicShow_BurstDebugInformation_DoNotShip/
