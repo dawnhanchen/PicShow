@@ -1,0 +1,5 @@
+{
+  "name": "PicShow.Editor",
+  "references": ["PicShow.Runtime", "Unity.ugui", "Unity.TextMeshPro", "Unity.XR.Interaction.Toolkit"],
+  "includePlatforms": ["Editor"]
+}

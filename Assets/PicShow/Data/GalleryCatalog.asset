@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a0bf1fdcfde40949914ed18f94517ad, type: 3}
+  m_Name: GalleryCatalog
+  m_EditorClassIdentifier: PicShow.Runtime::PicShow.GalleryCatalog
+  Categories:
+  - Name: "\u6C34\u5F69\u6CBB\u6108"
+    Description: "\u8F7B\u76C8\u7B14\u89E6 \xB7 \u67D4\u548C\u5149\u5F71 \xB7 \u6E29\u6696\u6CBB\u6108"
+    Accent: {r: 0.75686276, g: 0.87058824, b: 0.80784315, a: 1}
+    Works:
+    - Title: "\u96C5\u5178\u5B66\u9662"
+      Description: "\u8BA9\u601D\u60F3\u76F8\u9047\uFF0C\u8BA9\u5149\u7167\u8FDB\u53E4\u5178\u957F\u5ECA\u3002"
+      Texture: {fileID: 2800000, guid: 2c431b78551d1e9489ce0776190e963e, type: 3}
+    - Title: "\u6700\u540E\u7684\u665A\u9910"
+      Description: "\u4E00\u573A\u8DE8\u8D8A\u65F6\u95F4\u7684\u76F8\u805A\uFF0C\u4E00\u6B21\u5168\u65B0\u7684\u51DD\u671B\u3002"
+      Texture: {fileID: 2800000, guid: 9c3dd5d6c7c45374199ef977c36d2745, type: 3}
+    - Title: "\u5012\u725B\u5976\u7684\u5973\u4EC6"
+      Description: "\u5728\u65E5\u5E38\u7684\u5FAE\u5149\u91CC\uFF0C\u53D1\u73B0\u5B89\u9759\u7684\u7F8E\u3002"
+      Texture: {fileID: 2800000, guid: 304f45c24e781334ea4412e08501f518, type: 3}
+    - Title: "\u5BAB\u5A25"
+      Description: "\u76EE\u5149\u4EA4\u9519\u4E4B\u95F4\uFF0C\u8D70\u8FDB\u753B\u4E2D\u7684\u53E6\u4E00\u91CD\u7A7A\u95F4\u3002"
+      Texture: {fileID: 2800000, guid: a647acc3c48e6cc4fb96c67128248e1d, type: 3}
+    - Title: "\u6797\u836B\u9053"
+      Description: "\u6CBF\u7740\u5149\u5F71\u94FA\u5C31\u7684\u5C0F\u8DEF\uFF0C\u6162\u6162\u8D70\u8FDB\u98CE\u666F\u3002"
+      Texture: {fileID: 2800000, guid: a99f0a5b10a709a42835f6f2c9081ae1, type: 3}
+  - Name: "\u73B0\u4EE3\u90FD\u5E02"
+    Description: "\u5F53\u4EE3\u7A7A\u95F4 \xB7 \u90FD\u5E02\u79E9\u5E8F \xB7 \u7B80\u7EC3\u7EBF\u6761"
+    Accent: {r: 0.7254902, g: 0.8235294, b: 0.9019608, a: 1}
+    Works:
+    - Title: "\u96C5\u5178\u5B66\u9662"
+      Description: "\u8BA9\u601D\u60F3\u76F8\u9047\uFF0C\u8BA9\u5149\u7167\u8FDB\u53E4\u5178\u957F\u5ECA\u3002"
+      Texture: {fileID: 2800000, guid: a6e6bf0ad5f416b43868c8b6070a0763, type: 3}
+    - Title: "\u6700\u540E\u7684\u665A\u9910"
+      Description: "\u4E00\u573A\u8DE8\u8D8A\u65F6\u95F4\u7684\u76F8\u805A\uFF0C\u4E00\u6B21\u5168\u65B0\u7684\u51DD\u671B\u3002"
+      Texture: {fileID: 2800000, guid: 6c8b5ad069dd1d647a638a9f54511591, type: 3}
+    - Title: "\u5012\u725B\u5976\u7684\u5973\u4EC6"
+      Description: "\u5728\u65E5\u5E38\u7684\u5FAE\u5149\u91CC\uFF0C\u53D1\u73B0\u5B89\u9759\u7684\u7F8E\u3002"
+      Texture: {fileID: 2800000, guid: b6a9f486330a90343be474df9821974d, type: 3}
+    - Title: "\u5BAB\u5A25"
+      Description: "\u76EE\u5149\u4EA4\u9519\u4E4B\u95F4\uFF0C\u8D70\u8FDB\u753B\u4E2D\u7684\u53E6\u4E00\u91CD\u7A7A\u95F4\u3002"
+      Texture: {fileID: 2800000, guid: e2232545ad03dce40979c0274cf3cf52, type: 3}
+    - Title: "\u6797\u836B\u9053"
+      Description: "\u6CBF\u7740\u5149\u5F71\u94FA\u5C31\u7684\u5C0F\u8DEF\uFF0C\u6162\u6162\u8D70\u8FDB\u98CE\u666F\u3002"
+      Texture: {fileID: 2800000, guid: 18fcb82736dcdeb4480890fa2b28723e, type: 3}
+  - Name: "\u8D5B\u535A\u670B\u514B"
+    Description: "\u9713\u8679\u591C\u8272 \xB7 \u672A\u6765\u57CE\u5E02 \xB7 \u7535\u5B50\u5E7B\u60F3"
+    Accent: {r: 0.9137255, g: 0.7058824, b: 0.90588236, a: 1}
+    Works:
+    - Title: "\u96C5\u5178\u5B66\u9662"
+      Description: "\u8BA9\u601D\u60F3\u76F8\u9047\uFF0C\u8BA9\u5149\u7167\u8FDB\u53E4\u5178\u957F\u5ECA\u3002"
+      Texture: {fileID: 2800000, guid: f87259ecccc9e094aa85b9288557b626, type: 3}
+    - Title: "\u6700\u540E\u7684\u665A\u9910"
+      Description: "\u4E00\u573A\u8DE8\u8D8A\u65F6\u95F4\u7684\u76F8\u805A\uFF0C\u4E00\u6B21\u5168\u65B0\u7684\u51DD\u671B\u3002"
+      Texture: {fileID: 2800000, guid: f43d473d093be904c941fec805a5f7b3, type: 3}
+    - Title: "\u5012\u725B\u5976\u7684\u5973\u4EC6"
+      Description: "\u5728\u65E5\u5E38\u7684\u5FAE\u5149\u91CC\uFF0C\u53D1\u73B0\u5B89\u9759\u7684\u7F8E\u3002"
+      Texture: {fileID: 2800000, guid: aa81148b46b63fd4e81cdd2d80ab3e82, type: 3}
+    - Title: "\u5BAB\u5A25"
+      Description: "\u76EE\u5149\u4EA4\u9519\u4E4B\u95F4\uFF0C\u8D70\u8FDB\u753B\u4E2D\u7684\u53E6\u4E00\u91CD\u7A7A\u95F4\u3002"
+      Texture: {fileID: 2800000, guid: 4315bf01b712c7c4f99d6852305921ba, type: 3}
+    - Title: "\u6797\u836B\u9053"
+      Description: "\u6CBF\u7740\u5149\u5F71\u94FA\u5C31\u7684\u5C0F\u8DEF\uFF0C\u6162\u6162\u8D70\u8FDB\u98CE\u666F\u3002"
+      Texture: {fileID: 2800000, guid: 73d5db43e800e4d4ba333f7fb8fde285, type: 3}
+  - Name: "\u8D85\u73B0\u5B9E\u5947\u5E7B"
+    Description: "\u68A6\u5883\u6F2B\u6E38 \xB7 \u5947\u5E7B\u8272\u5F69 \xB7 \u65E0\u754C\u60F3\u8C61"
+    Accent: {r: 0.8156863, g: 0.7254902, b: 0.9254902, a: 1}
+    Works:
+    - Title: "\u96C5\u5178\u5B66\u9662"
+      Description: "\u8BA9\u601D\u60F3\u76F8\u9047\uFF0C\u8BA9\u5149\u7167\u8FDB\u53E4\u5178\u957F\u5ECA\u3002"
+      Texture: {fileID: 2800000, guid: c928eeaad6004354b8d50cf5fcf23382, type: 3}
+    - Title: "\u6700\u540E\u7684\u665A\u9910"
+      Description: "\u4E00\u573A\u8DE8\u8D8A\u65F6\u95F4\u7684\u76F8\u805A\uFF0C\u4E00\u6B21\u5168\u65B0\u7684\u51DD\u671B\u3002"
+      Texture: {fileID: 2800000, guid: 3cd3d4a300f7f2644a70d66ffa8128cf, type: 3}
+    - Title: "\u5012\u725B\u5976\u7684\u5973\u4EC6"
+      Description: "\u5728\u65E5\u5E38\u7684\u5FAE\u5149\u91CC\uFF0C\u53D1\u73B0\u5B89\u9759\u7684\u7F8E\u3002"
+      Texture: {fileID: 2800000, guid: e0db63f1c518c1e44a7c82342c5e2113, type: 3}
+    - Title: "\u5BAB\u5A25"
+      Description: "\u76EE\u5149\u4EA4\u9519\u4E4B\u95F4\uFF0C\u8D70\u8FDB\u753B\u4E2D\u7684\u53E6\u4E00\u91CD\u7A7A\u95F4\u3002"
+      Texture: {fileID: 2800000, guid: 8c1a285b6692b8a46a5183226710f313, type: 3}
+    - Title: "\u6797\u836B\u9053"
+      Description: "\u6CBF\u7740\u5149\u5F71\u94FA\u5C31\u7684\u5C0F\u8DEF\uFF0C\u6162\u6162\u8D70\u8FDB\u98CE\u666F\u3002"
+      Texture: {fileID: 2800000, guid: a0f15eb2eb0ce5143bd86b63d5fb812b, type: 3}

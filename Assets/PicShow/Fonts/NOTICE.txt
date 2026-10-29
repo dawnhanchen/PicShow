@@ -1,0 +1,7 @@
+Noto Sans SC Regular
+Copyright (c) 2014-2021 Adobe (http://www.adobe.com/), with Reserved Font Name 'Source'.
+
+Licensed under the SIL Open Font License, Version 1.1. See OFL.txt.
+Source: Google Fonts, https://fonts.google.com/noto/specimen/Noto+Sans+SC
+Downloaded through the Google Fonts CSS API.
+The included static TMP atlas contains the gallery's characters.

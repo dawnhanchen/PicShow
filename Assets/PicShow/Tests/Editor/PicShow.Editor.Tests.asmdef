@@ -1,0 +1,6 @@
+{
+  "name": "PicShow.Editor.Tests",
+  "references": ["PicShow.Runtime", "Unity.ugui", "Unity.TextMeshPro", "Unity.XR.Interaction.Toolkit"],
+  "includePlatforms": ["Editor"],
+  "optionalUnityReferences": ["TestAssemblies"]
+}
