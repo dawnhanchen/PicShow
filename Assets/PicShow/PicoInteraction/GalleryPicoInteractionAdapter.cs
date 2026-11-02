@@ -3,6 +3,7 @@ using ByteDance.PICO.Interaction;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.XR.Interaction.Toolkit.Inputs;
 
 namespace PicShow.PicoInteraction
 {
@@ -17,6 +18,9 @@ namespace PicShow.PicoInteraction
         [SerializeField] private Button[] buttons;
 
         private readonly List<Binding> bindings = new List<Binding>();
+        private readonly List<GalleryCardHover> hovers = new List<GalleryCardHover>();
+        private GalleryCarousel gallery;
+        private bool hoverBound;
 
         public void Configure(Button[] targetButtons)
         {
@@ -31,7 +35,11 @@ namespace PicShow.PicoInteraction
 
         private void Bind()
         {
-            if (bindings.Count != 0 || buttons == null)
+            if (bindings.Count != 0)
+                return;
+
+            BindHover();
+            if (buttons == null)
                 return;
 
             foreach (Button button in buttons)
@@ -51,8 +59,54 @@ namespace PicShow.PicoInteraction
             }
         }
 
+        // Recycles the same three card slots, so each slot keeps one hover binding for its lifetime.
+        private void BindHover()
+        {
+            if (hoverBound)
+                return;
+
+            gallery = GetComponent<GalleryCarousel>();
+            if (gallery == null)
+                return;
+
+            hovers.Clear();
+            foreach (GalleryCarousel.Card card in gallery.Cards)
+            {
+                if (card == null || card.Root == null)
+                    continue;
+
+                var hover = card.Root.GetComponent<GalleryCardHover>();
+                if (hover == null)
+                    hover = card.Root.gameObject.AddComponent<GalleryCardHover>();
+                hover.Configure(gallery, card);
+                hovers.Add(hover);
+            }
+
+            PXR_InteractorManager.InputModeChangeAction += OnInputModeChanged;
+            hoverBound = true;
+        }
+
+        // A modality switch invalidates every eye or controller pointer that produced the current
+        // highlight, so drop it before the new rays are evaluated.
+        private void OnInputModeChanged(XRInputModalityManager.InputMode inputMode)
+        {
+            foreach (GalleryCardHover hover in hovers)
+            {
+                if (hover != null)
+                    hover.ResetPointers();
+            }
+            if (gallery != null)
+                gallery.ClearHover();
+        }
+
         private void Unbind()
         {
+            if (hoverBound)
+            {
+                PXR_InteractorManager.InputModeChangeAction -= OnInputModeChanged;
+                hoverBound = false;
+                hovers.Clear();
+            }
             foreach (Binding binding in bindings)
             {
                 if (binding.Enhanced != null)

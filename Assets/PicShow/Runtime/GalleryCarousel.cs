@@ -52,8 +52,9 @@ namespace PicShow
         [SerializeField] private Image accentRule;
         [Header("Spatial layout (canvas units)")]
         [SerializeField] private float sideOffset = 760f;
-        [SerializeField] private float sideDepth = 180f;
-        [SerializeField] private float centerDepth = -65f;
+        // Concave arc: side cards sit closer to the viewer than the centre card.
+        [SerializeField] private float sideDepth = -100f;
+        [SerializeField] private float centerDepth = 60f;
         [SerializeField, Range(0.5f, 1f)] private float sideScale = 0.78f;
         [SerializeField] private float sideAngle = 24f;
         [SerializeField, Range(0f, 1f)] private float transitionDuration = 0.38f;
@@ -64,6 +65,19 @@ namespace PicShow
         private GalleryInputGate inputGate;
         private Coroutine transition;
         private bool bound;
+        private GalleryHoverState[] hover;
+        private Color[] baseArtwork;
+        private Color[] baseBorder;
+        private Vector2[] baseBorderSize;
+        private Image[] hoverGlow;
+        private RectTransform[] hoverVisual;
+
+        private const float HoverGlowSpread = 76f;
+        private const float HoverGlowAlpha = 0.55f;
+
+        public const string HoverGlowLayerName = "Hover glow";
+        public const string HoverVisualLayerName = "Hover visual";
+        public const string HoverHitAreaLayerName = "Hover hit area";
 
         public GalleryCatalog Catalog => catalog;
         public int CategoryIndex => state?.CategoryIndex ?? 0;
@@ -152,9 +166,12 @@ namespace PicShow
         private void Update()
         {
             var keyboard = Keyboard.current;
-            if (keyboard == null) return;
-            if (keyboard.leftArrowKey.wasPressedThisFrame) Submit(GalleryInputCommand.Move(-1));
-            if (keyboard.rightArrowKey.wasPressedThisFrame) Submit(GalleryInputCommand.Move(1));
+            if (keyboard != null)
+            {
+                if (keyboard.leftArrowKey.wasPressedThisFrame) Submit(GalleryInputCommand.Move(-1));
+                if (keyboard.rightArrowKey.wasPressedThisFrame) Submit(GalleryInputCommand.Move(1));
+            }
+            TickHover(Time.unscaledDeltaTime);
         }
 
         public bool ExecuteInput(GalleryInputCommand command, float timestamp)
@@ -183,10 +200,75 @@ namespace PicShow
 
         private void Submit(GalleryInputCommand command) => ExecuteInput(command, Time.unscaledTime);
 
+        public bool SetHover(Card card, bool hovered, GalleryHoverMode mode)
+        {
+            EnsureHover();
+            int index = Array.IndexOf(cards, card);
+            // The centre slot is the focused work and never reacts to pointing.
+            if (index < 0 || index == 1) return false;
+
+            if (hovered)
+            {
+                hover[index].Enter(mode);
+            }
+            else
+            {
+                hover[index].Exit();
+            }
+
+            // A profile change must re-apply visuals even when the progress is already 1.
+            ApplyPose(index);
+            ApplyHoverTint(index, hover[index].Progress);
+            return true;
+        }
+
+        public float HoverProgress(Card card)
+        {
+            EnsureHover();
+            int index = Array.IndexOf(cards, card);
+            return index < 0 ? 0f : hover[index].Progress;
+        }
+
+        public void TickHover(float deltaTime)
+        {
+            EnsureHover();
+            if (transition != null) return;
+            for (int i = 0; i < cards.Length; i++)
+            {
+                if (!hover[i].Advance(deltaTime)) continue;
+                ApplyPose(i);
+                ApplyHoverTint(i, hover[i].Progress);
+            }
+        }
+
+        public void ClearHover()
+        {
+            EnsureHover();
+            for (int i = 0; i < hover.Length; i++)
+            {
+                hover[i].Clear();
+                ApplyHoverTint(i, 0f);
+                ApplyPose(i);
+            }
+        }
+
+        private void EnsureHover()
+        {
+            if (hover != null) return;
+            hover = new GalleryHoverState[cards.Length];
+            baseArtwork = new Color[cards.Length];
+            baseBorder = new Color[cards.Length];
+            baseBorderSize = new Vector2[cards.Length];
+            hoverGlow = new Image[cards.Length];
+            hoverVisual = new RectTransform[cards.Length];
+            for (int i = 0; i < hover.Length; i++) hover[i] = new GalleryHoverState();
+        }
+
         public void Move(int direction)
         {
             if (!EnsureState() || direction == 0) return;
             Settle();
+            ClearHover();
             state.Move(direction);
             if (direction == 1)
                 cards = new[] { cards[1], cards[2], cards[0] };
@@ -198,7 +280,7 @@ namespace PicShow
                 Card recycled = cards[direction > 0 ? 2 : 0];
                 recycled.Root.localPosition = Pose(direction * 2);
                 recycled.Root.localScale = Vector3.one * 0.6f;
-                recycled.Root.localRotation = Quaternion.Euler(0, -direction * sideAngle, 0);
+                recycled.Root.localRotation = Rotation(direction * 2);
                 recycled.Group.alpha = 0f;
             }
             else Snap();
@@ -222,6 +304,7 @@ namespace PicShow
         private void FadeToSelection()
         {
             Settle();
+            ClearHover();
             RefreshContent();
             foreach (var card in cards)
             {
@@ -233,6 +316,14 @@ namespace PicShow
 
         private void RefreshContent()
         {
+            EnsureHover();
+            // Slots can be recycled to different cards, so cached visual/glow children must be
+            // resolved again against the current slot owner.
+            for (int i = 0; i < hoverVisual.Length; i++)
+            {
+                hoverVisual[i] = null;
+                hoverGlow[i] = null;
+            }
             var category = catalog.Categories[CategoryIndex];
             var work = category.Works[WorkIndex];
             for (int i = 0; i < cards.Length; i++)
@@ -246,6 +337,10 @@ namespace PicShow
                     ? new Vector2(900f, 900f / ratio) : new Vector2(600f * ratio, 600f);
                 card.Artwork.color = i == 1 ? Color.white : new Color(0.78f, 0.81f, 0.8f, 1f);
                 card.Border.color = i == 1 ? category.Accent : new Color32(76, 91, 84, 255);
+                baseArtwork[i] = card.Artwork.color;
+                baseBorder[i] = card.Border.color;
+                if (baseBorderSize[i] == Vector2.zero)
+                    baseBorderSize[i] = card.Border.rectTransform.sizeDelta;
                 card.Caption.text = i == 1 ? "" : category.Works[workIndex].Title;
                 card.Number.text = i == 1 ? "" : $"{workIndex + 1:00} / 05";
                 card.Caption.rectTransform.anchoredPosition = new Vector2(i == 2 ? 225f : -225f, -365f);
@@ -275,8 +370,95 @@ namespace PicShow
 
         private Vector3 Pose(int slot) => new Vector3(slot * sideOffset, 0f,
             slot == 0 ? centerDepth : sideDepth + (Math.Abs(slot) - 1) * 120f);
-        private Quaternion Rotation(int slot) => Quaternion.Euler(0, -slot * sideAngle, 0);
+        // Side cards turn their faces inward so the row wraps around the viewer.
+        private Quaternion Rotation(int slot) => Quaternion.Euler(0, slot * sideAngle, 0);
         private Vector3 Scale(int slot) => Vector3.one * (slot == 0 ? 1f : sideScale);
+
+        private void ApplyPose(int index)
+        {
+            int slot = index - 1;
+            Card card = cards[index];
+            card.Root.localPosition = Pose(slot);
+            card.Root.localRotation = Rotation(slot);
+            card.Root.localScale = Scale(slot);
+
+            // Hover moves the visual wrapper only, so the raycast area stays aligned with the
+            // card's carousel pose no matter how strongly the image reacts.
+            float progress = slot == 0 ? 0f : hover[index].Progress;
+            GalleryHoverProfile profile = hover[index].Profile;
+            float yaw = -Math.Sign(slot) * profile.YawTurn * progress;
+            RectTransform visual = ResolveVisual(index);
+            if (visual != null)
+            {
+                visual.localPosition = new Vector3(0f, 0f, -profile.Lift * progress);
+                visual.localRotation = Quaternion.Euler(0f, yaw, 0f);
+                visual.localScale = Vector3.one *
+                    (1f + profile.ScaleBoost / sideScale * progress);
+                return;
+            }
+
+            // Cards created without the hover binding (e.g. older scenes) keep the legacy pose.
+            card.Root.localPosition += new Vector3(0f, 0f, -profile.Lift * progress);
+            card.Root.localRotation = Quaternion.Euler(0f, slot * sideAngle + yaw, 0f);
+            card.Root.localScale = Scale(slot) + Vector3.one * (profile.ScaleBoost * progress);
+        }
+
+        private RectTransform ResolveVisual(int index)
+        {
+            if (hoverVisual[index] != null) return hoverVisual[index];
+            Transform child = cards[index].Root.Find(HoverVisualLayerName);
+            if (child == null) return null;
+            hoverVisual[index] = (RectTransform)child;
+            return hoverVisual[index];
+        }
+
+        private void ApplyHoverTint(int index, float progress)
+        {
+            if (baseArtwork == null || index >= baseArtwork.Length || baseBorderSize[index] == Vector2.zero)
+                return;
+
+            Card card = cards[index];
+            GalleryHoverProfile profile = GalleryHoverProfile.For(hover[index].Mode);
+            card.Artwork.color = Color.Lerp(baseArtwork[index], Color.white, progress);
+            Color accent = catalog != null ? catalog.Categories[CategoryIndex].Accent : Ink;
+            Color highlight = Color.Lerp(accent, Color.white, 0.92f);
+            card.Border.color = Color.Lerp(baseBorder[index], highlight, progress);
+            card.Border.rectTransform.sizeDelta =
+                baseBorderSize[index] + Vector2.one * (profile.Glow * progress);
+            if (index != 1)
+            {
+                card.Caption.color = Color.Lerp(Muted, Ink, progress);
+                card.Number.color = Color.Lerp(Muted, Ink, progress);
+            }
+
+            // A large, saturated halo reads clearly against both artwork and passthrough.
+            Image glow = ResolveGlow(index);
+            if (glow != null)
+            {
+                glow.rectTransform.sizeDelta =
+                    baseBorderSize[index] + Vector2.one * (HoverGlowSpread * progress);
+                Color halo = VividHighlight(accent);
+                halo.a = HoverGlowAlpha * progress;
+                glow.color = halo;
+            }
+        }
+
+        private static Color VividHighlight(Color accent)
+        {
+            Color.RGBToHSV(accent, out float hue, out float saturation, out _);
+            return Color.HSVToRGB(hue, Mathf.Clamp01(saturation + 0.45f), 1f);
+        }
+
+        private Image ResolveGlow(int index)
+        {
+            if (hoverGlow[index] != null) return hoverGlow[index];
+            RectTransform visual = ResolveVisual(index);
+            Transform parent = visual != null ? visual : cards[index].Root;
+            Transform child = parent.Find(HoverGlowLayerName);
+            if (child == null) return null;
+            hoverGlow[index] = child.GetComponent<Image>();
+            return hoverGlow[index];
+        }
 
         private void Animate()
         {
@@ -321,11 +503,11 @@ namespace PicShow
 
         private void Snap()
         {
+            EnsureHover();
             for (int i = 0; i < cards.Length; i++)
             {
-                cards[i].Root.localPosition = Pose(i - 1);
-                cards[i].Root.localRotation = Rotation(i - 1);
-                cards[i].Root.localScale = Scale(i - 1);
+                ApplyPose(i);
+                ApplyHoverTint(i, hover[i].Progress);
                 cards[i].Group.alpha = 1f;
             }
         }
@@ -339,6 +521,7 @@ namespace PicShow
 
         private void OnDisable()
         {
+            ClearHover();
             if (state != null) Settle();
         }
     }
