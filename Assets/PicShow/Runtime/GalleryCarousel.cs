@@ -43,8 +43,6 @@ namespace PicShow
         [SerializeField] private Tab[] tabs = new Tab[4];
         [SerializeField] private PositionDot[] dots = new PositionDot[5];
         [Header("Navigation and labels")]
-        [SerializeField] private Button previous;
-        [SerializeField] private Button next;
         [SerializeField] private TMP_Text styleDescription;
         [SerializeField] private TMP_Text workMeta;
         [SerializeField] private TMP_Text workTitle;
@@ -85,22 +83,18 @@ namespace PicShow
         public IReadOnlyList<Card> Cards => cards;
         public IReadOnlyList<Tab> Tabs => tabs;
         public IReadOnlyList<PositionDot> Dots => dots;
-        public Button PreviousButton => previous;
-        public Button NextButton => next;
         public string CurrentTitle => workTitle.text;
         public bool IsTransitioning => transition != null;
 
         // Used by the editor builder; all references are serialized into the prefab.
         public void Configure(GalleryCatalog content, Card[] cardViews, Tab[] tabViews,
-            PositionDot[] dotViews, Button previousButton, Button nextButton,
+            PositionDot[] dotViews,
             TMP_Text style, TMP_Text meta, TMP_Text title, TMP_Text description, Image rule)
         {
             catalog = content;
             cards = cardViews;
             tabs = tabViews;
             dots = dotViews;
-            previous = previousButton;
-            next = nextButton;
             styleDescription = style;
             workMeta = meta;
             workTitle = title;
@@ -122,8 +116,6 @@ namespace PicShow
             if (!EnsureState()) return;
             if (!bound)
             {
-                previous.onClick.AddListener(() => Submit(GalleryInputCommand.Move(-1)));
-                next.onClick.AddListener(() => Submit(GalleryInputCommand.Move(1)));
                 for (int i = 0; i < tabs.Length; i++)
                 {
                     int index = i;

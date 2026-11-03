@@ -2,7 +2,9 @@
   "name": "PicShow.Editor.Tests",
   "references": [
     "PicShow.Runtime",
+    "PicShow.Editor",
     "PicShow.PicoInteraction",
+    "PicShow.PlaneDetection",
     "ByteDance.PICO.Interaction",
     "ByteDance.PICO.XR",
     "Unity.ugui",

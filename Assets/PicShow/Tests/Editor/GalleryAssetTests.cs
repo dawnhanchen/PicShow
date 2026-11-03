@@ -68,6 +68,25 @@ namespace PicShow.Tests
         }
 
         [Test]
+        public void SavedPrefabFollowsHeadWithoutTilting()
+        {
+            var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath);
+            Assert.That(prefab, Is.Not.Null);
+            var followers = prefab.GetComponentsInChildren<LazyFollow>(true);
+            Assert.That(followers.Length, Is.EqualTo(1), "The gallery root must hold exactly one follower.");
+
+            var follow = followers[0];
+            Assert.That(follow.gameObject, Is.SameAs(prefab));
+            Assert.That(follow.target, Is.Null, "The target must stay unset so the follower picks up the main camera.");
+            Assert.That(follow.targetOffset, Is.EqualTo(new Vector3(0f, 0f, 2f)));
+            Assert.That(follow.followInLocalSpace, Is.False);
+            Assert.That(follow.applyTargetInLocalSpace, Is.False);
+            Assert.That(follow.positionFollowMode, Is.EqualTo(LazyFollow.PositionFollowMode.Follow));
+            Assert.That(follow.rotationFollowMode, Is.EqualTo(LazyFollow.RotationFollowMode.LookAtWithWorldUp));
+            Assert.That(follow.snapOnEnable, Is.False);
+        }
+
+        [Test]
         public void SavedPrefabOmitsRemovedHeaderAndFooterDecorations()
         {
             var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath);

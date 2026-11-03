@@ -49,12 +49,12 @@ namespace PicShow.Editor
                 if (step == 0)
                 {
                     AssertView(0, 0);
-                    Click(gallery.PreviousButton);
+                    gallery.Move(-1);
                 }
                 else if (step == 1)
                 {
                     AssertView(0, 4);
-                    Click(gallery.NextButton);
+                    gallery.Move(1);
                 }
                 else if (step == 2)
                 {
@@ -88,7 +88,7 @@ namespace PicShow.Editor
                             AssertView(c, w);
                         }
                     }
-                    for (int i = 0; i < 21; i++) Click(gallery.NextButton);
+                    for (int i = 0; i < 21; i++) gallery.Move(1);
                     Click(gallery.Tabs[1].Button);
                     gallery.enabled = false;
                     gallery.enabled = true;
@@ -99,7 +99,7 @@ namespace PicShow.Editor
                     Require(!gallery.IsTransitioning, "Disable/re-enable must cancel the transition.");
                     foreach (var card in gallery.Cards)
                         Require(Mathf.Approximately(card.Group.alpha, 1f), "Card alpha must settle.");
-                    Click(gallery.NextButton);
+                    gallery.Move(1);
                 }
                 else if (step == 8)
                 {
@@ -111,8 +111,8 @@ namespace PicShow.Editor
                 else if (step == 9)
                 {
                     AssertView(0, 0);
-                    Click(gallery.NextButton);
-                    gallery.NextButton.GetComponent<PXR_EnhancedButton>().onSingleClick.Invoke();
+                    Click(gallery.Dots[1].Button);
+                    gallery.Dots[1].Button.GetComponent<PXR_EnhancedButton>().onSingleClick.Invoke();
                 }
                 else if (step == 10)
                 {

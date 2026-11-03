@@ -3,6 +3,7 @@
   "references": [
     "PicShow.Runtime",
     "PicShow.PicoInteraction",
+    "PicShow.PlaneDetection",
     "ByteDance.PICO.Interaction",
     "ByteDance.PICO.XR",
     "Unity.ugui",

@@ -10,193 +10,323 @@ material is strictly forbidden unless prior written permission is obtained from
 PICO Technology Co., Ltd. 
 *******************************************************************************/
 // PlaneDetectionManager is the Plane-Detection sibling of SpatialMeshManager.
-// It reuses SpatialMeshManager's render pipeline VERBATIM -- an object pool of
-// wireframe mesh instances, a per-frame throttle, the global _TargetPosition
-// camera feed and the per-instance _StartTime feed that drive the
-// Custom/TriangleFadeOutFromCenter fade shader -- so detected planes render
-// with the SAME visual as the spatial mesh.
+// It reuses SpatialMeshManager's render pipeline when mesh rendering is enabled,
+// while the default PicShow mode uses it as a wall geometry source for the
+// immersive wall selection UI.
 //
-// The ONLY differences from SpatialMeshManager are the data source and how it
-// is started:
-//   * data source : PXR_Manager.PlaneDetectionDataUpdated (List<PxrPlaneData>)
-//                   instead of PXR_Manager.SpatialMeshDataUpdated.
-//   * start       : PXR_MixedReality.StartSenseDataProvider(PlaneDetection).
-//                   There is NO planeSubsystem accessor (unlike meshSubsystem);
-//                   PXR_Manager itself drives QueryPlaneAnchor on every
-//                   SenseDataUpdated for the PlaneDetection provider and fires
-//                   the event, so this driver only starts the provider and
-//                   subscribes.
-//   * state       : the plane data stream also emits MeshChangeState.Unchanged
-//                   (the mesh stream does not); it is handled as a no-op drop.
-//
-// PLANE DETECTION IS PICO-NATIVE ONLY. Unlike Spatial Mesh (which has a
-// PICOSpatialMesh OpenXR feature that creates its sense-data provider on the
-// OpenXR runtime), PICO ships NO plane-detection OpenXR feature. The plane
-// provider is created ONLY inside the native PXR_Loader
-// (UPxr_CreatePlaneDetectionSenseDataProvider), so under the OpenXR runtime the
-// provider never exists, PXR_Manager.PlaneDetectionDataUpdated never fires, and
-// QueryPlaneAnchorAsync has nothing to query. Therefore this driver is guarded
-// by ENABLE_PICO_XR_SDK only, has no OpenXR branch, and the MCP tool
-// (pico_xr_plane) refuses enable on the OpenXR runtime.
-//
-// PxrPlaneData shares uuid / state / position / rotation / indices / vertices
-// with PxrSpatialMeshInfo, so the geometry-build code is identical, including
-// the world-space vertex bake (rotation * v + position) that keeps the object
-// at the origin and lets the world-space _TargetPosition line up. Unlike the
-// SDK's PXR_PlaneDetectionManager, this driver does NOT overwrite the material
-// color per semantic label -- that would clobber the wireframe fade material.
-// Platform-common usings live OUTSIDE the PICO guard: none of these depend on a
-// PICO SDK being installed, so the file must not open with the PICO guard. Only
-// the PICO-specific using and the class body (which reference PXR_*/Pxr* types)
-// are gated.
+// PLANE DETECTION IS PICO-NATIVE ONLY. PICO ships NO plane-detection OpenXR
+// feature; the provider is created only inside the native PXR_Loader. Therefore
+// this driver is guarded by ENABLE_PICO_XR_SDK only and refuses to run under a
+// non-PICO runtime.
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+using PicShow;
 using UnityEngine;
 using UnityEngine.XR;
-using UnityEngine.XR.Management;
-// Disambiguate Debug: keep bare `Debug` bound to UnityEngine.Debug so this
-// template stays immune to CS0104 if System.Diagnostics.Debug enters scope
-// (mirrors SpatialMeshManager, its OpenXR-enabled sibling in this package).
 using Debug = UnityEngine.Debug;
 
 #if ENABLE_PICO_XR_SDK
 using ByteDance.PICO.XR;
 
-public class PlaneDetectionManager : MonoBehaviour
+public class PlaneDetectionManager : MonoBehaviour, IWallPlaneSource
 {
     public static PlaneDetectionManager Instance { get; private set; }
+
     [Header("通用配置")]
-    [SerializeField] private int maxRenderPerFrame = 100; // 每帧最大渲染数量
+    [SerializeField] private int maxRenderPerFrame = 100;
     [SerializeField] private int meshAmount = 200;
     [Header("平面过滤")]
     [Tooltip("只渲染语义标签为 Wall 的平面；关闭后显示所有平面。")]
     [SerializeField] private bool renderOnlyWallPlanes = true;
-    [Tooltip("当语义标签为 Unknown 但方向为 Vertical 时，也按墙面显示。默认关闭，确保只显示语义为墙面的平面。")]
-    [SerializeField] private bool includeVerticalUnknownPlanes = false;
     [Header("材质与容器")]
-    [SerializeField] private Transform meshContainer; // plane容器
-    [SerializeField] private GameObject meshPrefab; // 模版
+    [SerializeField] private Transform meshContainer;
+    [SerializeField] private GameObject meshPrefab;
     [SerializeField] private Material wireframeMaterial;
     [SerializeField] private Material transparentMaterial;
+    [Tooltip("墙面选择模式不需要重复的线框，默认交由墙面 UI 表达检测结果。")]
+    [SerializeField] private bool renderPlaneMeshes = false;
+
     private readonly Dictionary<Guid, GameObject> planeList = new();
+    private readonly Dictionary<Guid, WallPlaneInfo> wallList = new();
     private readonly Dictionary<Guid, PxrPlaneData> needUpdatePlaneList = new();
     private readonly Queue<GameObject> pool = new();
     private Mesh mesh;
     private Transform _camera;
     private readonly object listLock = new();
-    private bool isStopUpdatePlane = false;
-    private bool subscribed = false;
+    private bool isStopUpdatePlane = true;
+    private bool subscribed;
+    private bool poolCreated;
+    private bool detectionRequested;
+    private bool providerStarting;
+    private bool providerRunning;
+    private static readonly SemaphoreSlim providerStartGate = new(1, 1);
+
+    public bool DetectionEnabled { get; private set; }
+    public IReadOnlyDictionary<Guid, WallPlaneInfo> Walls => wallList;
+
+    public event Action<WallPlaneInfo> WallAdded;
+    public event Action<WallPlaneInfo> WallUpdated;
+    public event Action<Guid> WallRemoved;
+
     void Awake()
     {
         if (Instance != null)
         {
             Destroy(gameObject);
-            Debug.LogError($"该单例存在多个实例！");
+            Debug.LogError("该单例存在多个实例！");
         }
         else
         {
-            Destroy(Instance);
             Instance = this;
         }
     }
+
     void Start()
     {
-        _camera = Camera.main.transform;
-        InitSystem();
+        ResolveCamera();
     }
-    public void StopUpdate()
+
+    public void SetEnabled(bool enabled) => SetDetectionEnabled(enabled);
+
+    public void SetDetectionEnabled(bool enabled)
     {
-        StopUpdatePlane();
+        if (enabled)
+            StartDetection();
+        else
+            StopDetection();
     }
-    private void InitSystem()
+
+    private async void StartDetection()
     {
-        // Plane detection has no XR subsystem accessor (unlike meshSubsystem);
-        // start the sense-data provider directly.
+        detectionRequested = true;
+        if (providerStarting)
+            return;
+        if (providerRunning)
+        {
+            EnableDelivery();
+            return;
+        }
+        ResolveCamera();
+        EnsurePool();
+        providerStarting = true;
+        // The native provider handle is shared across component instances.
+        await providerStartGate.WaitAsync();
+        try
+        {
+            if (!detectionRequested || this == null)
+                return;
+            PxrResult result = await StartProviderAsync();
+            if (result != PxrResult.SUCCESS)
+            {
+                Debug.LogWarning("Start plane detection provider failed: " + result);
+                return;
+            }
+            providerRunning = true;
+            // Do not release the shared gate until late-start cleanup has finished.
+            if (!detectionRequested || this == null)
+                StopRunningProvider();
+            else
+                EnableDelivery();
+        }
+        catch (Exception exception)
+        {
+            Debug.LogWarning("Start plane detection provider failed: " + exception.Message);
+        }
+        finally
+        {
+            providerStarting = false;
+            providerStartGate.Release();
+        }
+    }
+
+    private void EnableDelivery()
+    {
+        if (!subscribed)
+        {
+            PXR_Manager.PlaneDetectionDataUpdated += PXR_OnPlaneDetectionDataUpdated;
+            subscribed = true;
+        }
+        isStopUpdatePlane = false;
+        DetectionEnabled = true;
+    }
+
+    private void StopDetection()
+    {
+        detectionRequested = false;
+        DetectionEnabled = false;
+        isStopUpdatePlane = true;
+        if (subscribed)
+        {
+            PXR_Manager.PlaneDetectionDataUpdated -= PXR_OnPlaneDetectionDataUpdated;
+            subscribed = false;
+        }
+        // Never issue stop concurrently with the SDK's outstanding start task.
+        if (!providerStarting)
+            StopRunningProvider();
+        ClearWalls();
+    }
+
+    private void StopRunningProvider()
+    {
+        if (!providerRunning)
+            return;
+        try
+        {
+            var result = StopProvider();
+            if (result != PxrResult.SUCCESS)
+            {
+                Debug.LogWarning("Stop plane detection provider failed: " + result);
+                return;
+            }
+            providerRunning = false;
+        }
+        catch (Exception exception)
+        {
+            Debug.LogWarning("Stop plane detection provider failed: " + exception.Message);
+        }
+    }
+
+    public void ClearWalls()
+    {
+        lock (listLock)
+        {
+            foreach (Guid id in wallList.Keys.ToList())
+                WallRemoved?.Invoke(id);
+            wallList.Clear();
+            needUpdatePlaneList.Clear();
+            foreach (GameObject plane in planeList.Values)
+                SetPlaneToPool(plane);
+            planeList.Clear();
+        }
+    }
+
+    protected virtual Task<PxrResult> StartProviderAsync() =>
         PXR_MixedReality.StartSenseDataProvider(PxrSenseDataProviderType.PlaneDetection);
-        // PXR_Manager drives the query loop and fires PlaneDetectionDataUpdated,
-        // so this driver only starts the provider and subscribes. (Native-only:
-        // plane detection has no PICO OpenXR feature -- see the file header.)
-        PXR_Manager.PlaneDetectionDataUpdated += PXR_OnPlaneDetectionDataUpdated;
-        subscribed = true;
+
+    protected virtual PxrResult StopProvider() =>
+        PXR_MixedReality.StopSenseDataProvider(PxrSenseDataProviderType.PlaneDetection);
+
+    void Update()
+    {
+        if (!DetectionEnabled || isStopUpdatePlane) return;
+        if (_camera != null)
+            Shader.SetGlobalVector("_TargetPosition", _camera.position);
+        if (needUpdatePlaneList.Count == 0)
+            return;
+        lock (listLock)
+        {
+            var keysToRemove = needUpdatePlaneList.Keys.Take(maxRenderPerFrame).ToList();
+            foreach (Guid key in keysToRemove)
+                PlaneUpdateQueue(needUpdatePlaneList[key]);
+            foreach (Guid key in keysToRemove)
+                needUpdatePlaneList.Remove(key);
+        }
+    }
+
+    private void PlaneUpdateQueue(PxrPlaneData data)
+    {
+        if (data.state == MeshChangeState.Removed)
+        {
+            RemoveWall(data.uuid);
+            SetPlaneToPool(planeList.TryGetValue(data.uuid, out GameObject removed) ? removed : null);
+            planeList.Remove(data.uuid);
+            return;
+        }
+
+        if (!TryBuildWall(data, _camera != null ? _camera.position : Vector3.zero,
+                TrackingToWorld, false, out WallPlaneInfo wall))
+        {
+            RemoveWall(data.uuid);
+            if (planeList.TryGetValue(data.uuid, out GameObject stale))
+            {
+                SetPlaneToPool(stale);
+                planeList.Remove(data.uuid);
+            }
+            return;
+        }
+
+        bool existed = wallList.ContainsKey(data.uuid);
+        wallList[data.uuid] = wall;
+        if (existed)
+            WallUpdated?.Invoke(wall);
+        else
+            WallAdded?.Invoke(wall);
+
+        if (!renderPlaneMeshes)
+            return;
+        if (planeList.TryGetValue(data.uuid, out GameObject existing))
+            CreateMesh(data, existing);
+        else
+        {
+            GameObject plane = GetPlaneFromPool();
+            if (plane == null)
+                return;
+            planeList.Add(data.uuid, plane);
+            CreateMesh(data, plane);
+        }
+    }
+
+    public static bool TryBuildWall(PxrPlaneData data, Vector3 cameraPosition,
+        out WallPlaneInfo wall) => TryBuildWall(data, cameraPosition, Matrix4x4.identity,
+        false, out wall);
+
+    public static bool TryBuildWall(PxrPlaneData data, Vector3 cameraPosition,
+        Matrix4x4 trackingToWorld, out WallPlaneInfo wall) => TryBuildWall(data,
+        cameraPosition, trackingToWorld, false, out wall);
+
+    public static bool TryBuildWall(PxrPlaneData data, Vector3 cameraPosition,
+        Matrix4x4 trackingToWorld, bool allowGeometricFallback, out WallPlaneInfo wall)
+    {
+        int[] indices = data.indices != null && data.indices.Length > 0
+            ? data.indices.Select(index => (int)index).ToArray()
+            : null;
+        return WallGeometry.TryBuild(data.uuid, WorldVertices(data, trackingToWorld), indices,
+            data.label == PxrSemanticLabel.Wall, cameraPosition, allowGeometricFallback,
+            out wall, out _);
+    }
+
+    private Matrix4x4 TrackingToWorld => _camera != null && _camera.parent != null
+        ? _camera.parent.localToWorldMatrix : Matrix4x4.identity;
+
+    private static Vector3[] WorldVertices(PxrPlaneData data, Matrix4x4 trackingToWorld)
+    {
+        if (data.vertices == null)
+            return null;
+        var vertices = new Vector3[data.vertices.Length];
+        for (int i = 0; i < vertices.Length; i++)
+            vertices[i] = trackingToWorld.MultiplyPoint3x4(
+                data.rotation * data.vertices[i] + data.position);
+        return vertices;
+    }
+
+    private void RemoveWall(Guid id)
+    {
+        if (!wallList.Remove(id))
+            return;
+        WallRemoved?.Invoke(id);
+    }
+
+    private void EnsurePool()
+    {
+        if (poolCreated || !renderPlaneMeshes || meshPrefab == null)
+            return;
         for (var i = 0; i < meshAmount; i++)
         {
             var plane = Instantiate(meshPrefab, meshContainer);
             pool.Enqueue(plane);
             plane.SetActive(false);
         }
-    }
-
-    void Update()
-    {
-        if (isStopUpdatePlane) return;
-        Shader.SetGlobalVector("_TargetPosition", _camera.position);
-        if (needUpdatePlaneList.Count > 0)
-        {
-            lock (listLock)
-            {
-                var keysToRemove = needUpdatePlaneList.Keys.Take(maxRenderPerFrame).ToList();
-                foreach (var key in keysToRemove)
-                {
-                    PlaneUpdateQueue(needUpdatePlaneList[key]);
-                }
-                // 删除这些键对应的记录
-                foreach (var key in keysToRemove)
-                {
-                    needUpdatePlaneList.Remove(key);
-                }
-            }
-        }
-    }
-
-    private void PlaneUpdateQueue(PxrPlaneData pxrPlaneData)
-    {
-        var id = pxrPlaneData.uuid;
-        if ((pxrPlaneData.state == MeshChangeState.Added || pxrPlaneData.state == MeshChangeState.Updated) && !ShouldRenderPlane(pxrPlaneData))
-        {
-            if (planeList.ContainsKey(id))
-            {
-                SetPlaneToPool(planeList[id]);
-                planeList.Remove(id);
-            }
-            return;
-        }
-        switch (pxrPlaneData.state)
-        {
-            case MeshChangeState.Added:
-            case MeshChangeState.Updated:
-                if (planeList.ContainsKey(id))
-                {
-                    CreateMesh(pxrPlaneData, planeList[id]);
-                }
-                else
-                {
-                    GameObject newPlane = GetPlaneFromPool();
-                    planeList.Add(id, newPlane);
-                    CreateMesh(pxrPlaneData, newPlane);
-                }
-                break;
-            case MeshChangeState.Removed:
-                if (planeList.ContainsKey(id))
-                {
-                    SetPlaneToPool(planeList[id]);
-                    planeList.Remove(id);
-                }
-                break;
-            default:
-                break;
-        }
-    }
-
-    private bool ShouldRenderPlane(PxrPlaneData planeData)
-    {
-        if (!renderOnlyWallPlanes) return true;
-        if (planeData.label == PxrSemanticLabel.Wall) return true;
-        return includeVerticalUnknownPlanes && planeData.label == PxrSemanticLabel.Unknown && planeData.orientationMode == PxrPlaneOrientation.Vertical;
+        poolCreated = true;
     }
 
     private GameObject GetPlaneFromPool()
     {
+        if (!renderPlaneMeshes || meshPrefab == null)
+            return null;
+        EnsurePool();
         GameObject plane;
         if (pool.Count > 0)
         {
@@ -209,28 +339,33 @@ public class PlaneDetectionManager : MonoBehaviour
             plane.SetActive(true);
         }
         var renderer = plane.GetComponent<MeshRenderer>();
-        MaterialPropertyBlock props = new();
-        props.SetFloat("_StartTime", Time.time);
-        renderer.SetPropertyBlock(props);
+        if (renderer != null)
+        {
+            MaterialPropertyBlock props = new();
+            props.SetFloat("_StartTime", Time.time);
+            renderer.SetPropertyBlock(props);
+        }
         return plane;
     }
+
     private void SetPlaneToPool(GameObject plane)
     {
+        if (plane == null)
+            return;
         plane.SetActive(false);
         if (pool.Count > meshAmount)
-        {
             Destroy(plane);
-        }
         else
-        {
             pool.Enqueue(plane);
-        }
     }
+
     private void PXR_OnPlaneDetectionDataUpdated(List<PxrPlaneData> list)
     {
         lock (listLock)
         {
-            foreach (var item in list)
+            if (!DetectionEnabled)
+                return;
+            foreach (PxrPlaneData item in list)
             {
                 if (needUpdatePlaneList.ContainsKey(item.uuid))
                 {
@@ -241,13 +376,8 @@ public class PlaneDetectionManager : MonoBehaviour
                             needUpdatePlaneList[item.uuid] = item;
                             break;
                         case MeshChangeState.Removed:
-                            needUpdatePlaneList.Remove(item.uuid);
-                            break;
                         case MeshChangeState.Unchanged:
-                            // Plane stream emits Unchanged; nothing to redraw.
                             needUpdatePlaneList.Remove(item.uuid);
-                            break;
-                        default:
                             break;
                     }
                 }
@@ -258,10 +388,15 @@ public class PlaneDetectionManager : MonoBehaviour
             }
         }
     }
+
     private void CreateMesh(PxrPlaneData block, GameObject planeGameObject)
     {
+        if (planeGameObject == null)
+            return;
         var meshFilter = planeGameObject.GetComponentInChildren<MeshFilter>();
         var meshCollider = planeGameObject.GetComponentInChildren<MeshCollider>();
+        if (meshFilter == null)
+            return;
         if (meshFilter.mesh == null)
         {
             mesh = new Mesh();
@@ -273,35 +408,33 @@ public class PlaneDetectionManager : MonoBehaviour
             mesh = meshFilter.mesh;
             mesh.Clear();
         }
-        var vertices = new List<Vector3>();
-        for (var i = 0; i < block.vertices.Length; i++)
-        {
-            vertices.Add(block.rotation * block.vertices[i] + block.position);
-        }
+        var vertices = WorldVertices(block, TrackingToWorld);
+        for (var i = 0; i < vertices.Length; i++)
+            vertices[i] = meshFilter.transform.InverseTransformPoint(vertices[i]);
         mesh.SetVertices(vertices);
         mesh.SetTriangles(block.indices, 0);
         mesh.RecalculateNormals();
         meshFilter.mesh = mesh;
         if (meshCollider != null)
-        {
             meshCollider.sharedMesh = mesh;
-        }
     }
-    private void StopUpdatePlane()
+
+    private void ResolveCamera()
     {
-        isStopUpdatePlane = true;
-#if !UNITY_EDITOR
-        if (subscribed) PXR_Manager.PlaneDetectionDataUpdated -= PXR_OnPlaneDetectionDataUpdated;
-#endif
+        if (_camera == null && Camera.main != null)
+            _camera = Camera.main.transform;
     }
+
     private void OnDisable()
     {
-        if (subscribed)
-        {
-            PXR_Manager.PlaneDetectionDataUpdated -= PXR_OnPlaneDetectionDataUpdated;
-            subscribed = false;
-        }
+        StopDetection();
+    }
+
+    private void OnDestroy()
+    {
+        StopDetection();
+        if (Instance == this)
+            Instance = null;
     }
 }
 #endif
-

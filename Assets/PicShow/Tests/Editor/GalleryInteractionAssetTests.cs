@@ -29,12 +29,15 @@ namespace PicShow.Tests
             var gallery = prefab.GetComponent<GalleryCarousel>();
             var interactiveButtons = gallery.Tabs.Select(tab => tab.Button)
                 .Concat(gallery.Dots.Select(dot => dot.Button))
-                .Concat(new[] { gallery.PreviousButton, gallery.NextButton })
                 .Concat(gallery.Cards.Select(card => card.Button))
                 .ToArray();
 
+            Assert.That(prefab.transform.Find("Previous"), Is.Null,
+                "The left arrow button must not be part of the gallery.");
+            Assert.That(prefab.transform.Find("Next"), Is.Null,
+                "The right arrow button must not be part of the gallery.");
             Assert.That(prefab.GetComponent<GalleryPicoInteractionAdapter>(), Is.Not.Null);
-            Assert.That(interactiveButtons, Has.Length.EqualTo(14));
+            Assert.That(interactiveButtons, Has.Length.EqualTo(12));
             Assert.That(interactiveButtons.All(button =>
                 button.GetComponent<PXR_EnhancedButton>() != null), Is.True);
             Assert.That(prefab.GetComponentsInChildren<TrackedDeviceGraphicRaycaster>(true),

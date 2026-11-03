@@ -20,6 +20,9 @@ namespace PicShow.Editor
         private const string Root = "Assets/PicShow";
         public const string PrefabPath = Root + "/Prefabs/FourRealmsGallery.prefab";
         public const string CatalogPath = Root + "/Data/GalleryCatalog.asset";
+        // The rounded sprite is generated at 512 px with a 160 px nine-slice border; this
+        // multiplier keeps the on-screen corner radius identical to the previous 64 px sprite.
+        private const float RoundedPixelsPerUnitMultiplier = 4.4f;
         private static TMP_FontAsset font;
         private static Sprite rounded;
         private static readonly Color Ink = Hex("#EDF1E9");
@@ -101,10 +104,6 @@ namespace PicShow.Editor
             TMP_Text meta = Text("Current style and position", root, "", new Vector2(0, -485), new Vector2(1250, 46), 23, Accent);
             TMP_Text title = Text("Current title", root, "", new Vector2(0, -545), new Vector2(1500, 78), 48, Ink);
             TMP_Text description = Text("Current description", root, "", new Vector2(0, -609), new Vector2(1900, 55), 25, Muted);
-            Button previous = Button("Previous", root, new Vector2(-250, -695), new Vector2(86, 86), Hex("#25332E"));
-            Text("Arrow", previous.transform, "‹", Vector2.zero, new Vector2(80, 90), 64, Ink);
-            Button next = Button("Next", root, new Vector2(250, -695), new Vector2(86, 86), Hex("#25332E"));
-            Text("Arrow", next.transform, "›", Vector2.zero, new Vector2(80, 90), 64, Ink);
             var dots = new GalleryCarousel.PositionDot[5];
             for (int i = 0; i < 5; i++)
             {
@@ -116,7 +115,7 @@ namespace PicShow.Editor
                 };
             }
             var carousel = root.gameObject.AddComponent<GalleryCarousel>();
-            carousel.Configure(catalog, cards, tabs, dots, previous, next, style, meta, title, description, rule);
+            carousel.Configure(catalog, cards, tabs, dots, style, meta, title, description, rule);
             ConfigurePicoInteraction(root.gameObject, carousel, stage);
             root.gameObject.SetActive(true);
             PrefabUtility.SaveAsPrefabAssetAndConnect(root.gameObject, PrefabPath, InteractionMode.AutomatedAction);
@@ -184,6 +183,34 @@ namespace PicShow.Editor
             AssetDatabase.ImportAsset(PrefabPath, ImportAssetOptions.ForceUpdate);
         }
 
+        [MenuItem("PicShow/Apply Head Follow")]
+        public static void ApplyHeadFollow()
+        {
+            if (Application.isPlaying)
+                throw new InvalidOperationException("Exit Play Mode before applying head follow.");
+
+            GameObject root = PrefabUtility.LoadPrefabContents(PrefabPath);
+            try
+            {
+                var follow = root.GetComponent<LazyFollow>() ?? root.AddComponent<LazyFollow>();
+                follow.target = null; // Falls back to Camera.main when the component is enabled.
+                follow.targetOffset = new Vector3(0f, 0f, 2f);
+                follow.followInLocalSpace = false;
+                follow.applyTargetInLocalSpace = false;
+                follow.positionFollowMode = LazyFollow.PositionFollowMode.Follow;
+                follow.rotationFollowMode = LazyFollow.RotationFollowMode.LookAtWithWorldUp;
+                follow.snapOnEnable = false;
+                PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+
+            AssetDatabase.SaveAssets();
+            AssetDatabase.ImportAsset(PrefabPath, ImportAssetOptions.ForceUpdate);
+        }
+
         private static void ConfigurePicoInteraction(
             GameObject root,
             GalleryCarousel carousel,
@@ -193,7 +220,6 @@ namespace PicShow.Editor
             // PICO enhanced button; the center card stays non-interactable at runtime.
             Button[] interactiveButtons = carousel.Tabs.Select(tab => tab.Button)
                 .Concat(carousel.Dots.Select(dot => dot.Button))
-                .Concat(new[] { carousel.PreviousButton, carousel.NextButton })
                 .Concat(carousel.Cards.Select(card => card.Button))
                 .ToArray();
 
@@ -334,28 +360,63 @@ namespace PicShow.Editor
         private static Sprite BuildRoundedSprite()
         {
             const string path = Root + "/UI/RoundedPanel.png";
-            if (!File.Exists(path))
+            const int size = 512;
+            const int border = 160;
+            const float center = 255.5f;
+            const float cornerRadius = 131.5f;
+            const float flatHalf = center - cornerRadius;
+            const float antialias = 8f;
+            var texture = new Texture2D(size, size, TextureFormat.RGBA32, false);
+            for (int y = 0; y < size; y++)
+            for (int x = 0; x < size; x++)
             {
-                var texture = new Texture2D(64, 64, TextureFormat.RGBA32, false);
-                for (int y = 0; y < 64; y++)
-                for (int x = 0; x < 64; x++)
-                {
-                    var delta = new Vector2(Mathf.Max(Mathf.Abs(x - 31.5f) - 15.5f, 0), Mathf.Max(Mathf.Abs(y - 31.5f) - 15.5f, 0));
-                    texture.SetPixel(x, y, new Color(1, 1, 1, Mathf.Clamp01(16.5f - delta.magnitude)));
-                }
-                texture.Apply();
-                File.WriteAllBytes(path, texture.EncodeToPNG());
-                UnityEngine.Object.DestroyImmediate(texture);
-                AssetDatabase.ImportAsset(path);
-                var importer = (TextureImporter)AssetImporter.GetAtPath(path);
-                importer.textureType = TextureImporterType.Sprite;
-                importer.spriteImportMode = SpriteImportMode.Single;
-                importer.spriteBorder = new Vector4(20, 20, 20, 20);
-                importer.mipmapEnabled = false;
-                importer.textureCompression = TextureImporterCompression.Uncompressed;
-                importer.SaveAndReimport();
+                // Signed distance to the rounded rect boundary: opaque inside the radius,
+                // transparent outside, with an 8 px ramp that maps to about one screen pixel.
+                var delta = new Vector2(
+                    Mathf.Max(Mathf.Abs(x - center) - flatHalf, 0),
+                    Mathf.Max(Mathf.Abs(y - center) - flatHalf, 0));
+                float alpha = (cornerRadius - delta.magnitude) / antialias + 0.5f;
+                texture.SetPixel(x, y, new Color(1, 1, 1, Mathf.Clamp01(alpha)));
             }
+            texture.Apply();
+            File.WriteAllBytes(path, texture.EncodeToPNG());
+            UnityEngine.Object.DestroyImmediate(texture);
+            AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
+            var importer = (TextureImporter)AssetImporter.GetAtPath(path);
+            importer.textureType = TextureImporterType.Sprite;
+            importer.spriteImportMode = SpriteImportMode.Single;
+            importer.spriteBorder = new Vector4(border, border, border, border);
+            importer.mipmapEnabled = false;
+            importer.textureCompression = TextureImporterCompression.Uncompressed;
+            importer.SaveAndReimport();
             return AssetDatabase.LoadAssetAtPath<Sprite>(path);
+        }
+
+        [MenuItem("PicShow/Upgrade UI Sharpness")]
+        public static void UpgradeSharpness()
+        {
+            if (Application.isPlaying)
+                throw new InvalidOperationException("Exit Play Mode before upgrading UI sharpness.");
+
+            rounded = BuildRoundedSprite();
+            GameObject root = PrefabUtility.LoadPrefabContents(PrefabPath);
+            try
+            {
+                foreach (Image image in root.GetComponentsInChildren<Image>(true))
+                {
+                    if (image.sprite == rounded)
+                        image.pixelsPerUnitMultiplier = RoundedPixelsPerUnitMultiplier;
+                }
+                PrefabUtility.SaveAsPrefabAsset(root, PrefabPath);
+            }
+            finally
+            {
+                PrefabUtility.UnloadPrefabContents(root);
+            }
+
+            AssetDatabase.SaveAssets();
+            AssetDatabase.ImportAsset(PrefabPath, ImportAssetOptions.ForceUpdate);
+            Debug.Log("PicShow rounded UI sprite upgraded to 512 px.");
         }
 
         private static void EnsureEventSystem()
@@ -388,7 +449,7 @@ namespace PicShow.Editor
             {
                 image.sprite = rounded;
                 image.type = UnityEngine.UI.Image.Type.Sliced;
-                image.pixelsPerUnitMultiplier = 0.55f;
+                image.pixelsPerUnitMultiplier = RoundedPixelsPerUnitMultiplier;
             }
             return image;
         }

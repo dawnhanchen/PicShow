@@ -39,7 +39,7 @@ MonoBehaviour:
   meshLod: 0
   superResolution: 0
   normalSharpening: 0
-  qualitySharpening: 0
+  qualitySharpening: 1
   fixedFoveatedSharpening: 0
   selfAdaptiveSharpening: 0
   handTrackingSupportType: 0
