@@ -1,0 +1,66 @@
+app:
+  id: "7703840230599573558"
+  name: 万象画境
+  slogan: 把美术馆搬进你的房间，让名画在真实墙面上触手可及。
+  description: |
+    「万象画境」是一款面向 PICO 的混合现实艺术画廊应用。
+
+    戴上头显，家中的墙面会变成你的私人展厅：应用自动识别真实墙面与平面，将画作按墙面尺寸自适应排布；也可以进入沉浸画廊，在柔和光线下欣赏完整的主题画作。
+
+    【四大主题】
+    水彩治愈、现代都市、赛博朋克、超现实奇幻，每个主题 5 幅作品、共 20 幅；三联画式轮播让当前画作居中突出、相邻作品自然退后，切换主题与画作时保持位置连贯。
+
+    【三种交互】
+    手势追踪：捏合、拖拽即可切换主题与画作；
+    视线追踪：目光停留即可聚焦卡片；
+    手柄操作：摇杆与按键完成浏览、选择与返回。
+    三种方式可自由混用，也可随时通过返回按钮回到模式选择，重新布置你的空间展厅。
+
+    【适用场景】
+    居家墙面装饰、客厅艺术氛围营造、艺术启蒙与展厅陈列。
+  tags:
+    - 艺术画廊
+    - 混合现实
+    - 空间展示
+    - 沉浸体验
+    - 家居装饰
+  category: application
+  icon: uri:tos-cn-i-1f2op84boi/c20c97c5-d891-43d9-a674-efed895042a0.png
+  landscape: uri:tos-cn-i-1f2op84boi/3b5dbb70-4a49-4d9a-a5b0-b46aaf328f1a.jpg
+  detail_images:
+    - uri:tos-cn-i-1f2op84boi/52af007a-c5ec-4a15-8327-828ae2505243.jpg
+    - uri:tos-cn-i-1f2op84boi/1ad45790-a6c0-41c1-8bbf-fde99040c5ea.jpg
+    - uri:tos-cn-i-1f2op84boi/e5835ec9-09a8-48be-a2d2-0b88238bfdbc.jpg
+  videos: []
+version:
+  name: V0.1.0 万象画境 · 首版发布
+  notes: |-
+    万象画境首版发布。戴上 PICO 头显，让古典与当代画作从墙面缓缓展开。
+
+    【双模式浏览】
+    · 沉浸画廊：纵览水彩治愈、现代都市、霓虹夜色、梦境漫游四大主题。
+    · MR 墙面模式：自动识别真实房间墙面，将画作直接陈列在空间中，可自由选择展示位置。
+
+    【内容与交互】
+    · 20 幅精选画作：四大主题各 5 幅，三联画式轮播同时呈现相邻作品，当前画作居中突出。
+    · 手势追踪：捏合、拖拽即可切换主题与画作，无需手柄。
+    · 视线追踪：目光停留即可聚焦卡片，选中更自然。
+    · 手柄支持：摇杆/按键完成浏览与返回，三种交互方式随时可用。
+    · 便捷返回：任意模式均可通过返回按钮回到模式选择界面。
+
+    【体验提示】
+    首次进入 MR 模式时请环视房间，待墙面识别完成后选择展示位置，效果最佳。
+
+    本版本为首个公开版本，后续将持续扩充画作内容与空间交互体验。
+build:
+  repo_url: https://github.com/dawnhanchen/PicShow
+  repo_visibility: public
+  tech_stack: unity
+  ai_tool: TreaCode
+  ai_model: DeepSeek V4 Flash
+  features:
+    - hand_tracking
+    - eye_tracking
+    - mixed_reality
+    - controller_support
+  teammates: []
