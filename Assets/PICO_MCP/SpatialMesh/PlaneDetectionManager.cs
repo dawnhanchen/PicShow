@@ -373,11 +373,10 @@ public class PlaneDetectionManager : MonoBehaviour, IWallPlaneSource
                     {
                         case MeshChangeState.Added:
                         case MeshChangeState.Updated:
+                        case MeshChangeState.Removed:
                             needUpdatePlaneList[item.uuid] = item;
                             break;
-                        case MeshChangeState.Removed:
                         case MeshChangeState.Unchanged:
-                            needUpdatePlaneList.Remove(item.uuid);
                             break;
                     }
                 }

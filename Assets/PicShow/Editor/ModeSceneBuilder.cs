@@ -109,7 +109,7 @@ namespace PicShow.Editor
                 UnityEngine.TextCore.LowLevel.GlyphRenderMode.SDFAA, 2048, 2048,
                 AtlasPopulationMode.Dynamic, false);
             string glyphs = MenuText + NonMenuText +
-                "选择该墙面显示墙面模式换墙面返回上一页沉浸展示检测轮播浏览选择体验模式墙面展示三图作品分类或·" +
+                "万象画境选择该墙面显示墙面模式换墙面返回上一页沉浸展示检测轮播浏览选择体验模式墙面展示三图作品分类或·" +
                 "水彩治愈现代都市赛博朋克超现实奇幻";
             string ascii = new string(Enumerable.Range(32, 95).Select(i => (char)i).ToArray());
             if (!asset.TryAddCharacters(glyphs + ascii, out string missing))
@@ -147,7 +147,7 @@ namespace PicShow.Editor
             {
                 Image("Backdrop", root.transform, Vector2.zero, new Vector2(1200, 700),
                     Hex("#17231E"), true);
-                Text("Title", root.transform, "选择体验模式", new Vector2(0, 288),
+                Text("Title", root.transform, "万象画境", new Vector2(0, 288),
                     new Vector2(1000, 70), 48, Ink);
                 Text("Subtitle", root.transform, "选择 MR 墙面展示或非 MR 轮播浏览", new Vector2(0, 228),
                     new Vector2(1050, 44), 24, Muted);

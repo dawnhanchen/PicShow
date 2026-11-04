@@ -44,7 +44,7 @@ namespace PicShow.Editor
             "梦境漫游 · 奇幻色彩 · 无界想象"
         };
         private const string InterfaceText =
-            "PicShow四境画廊04风格20作品经典的另一种可能一幅经典，四种意境" +
+            "PicShow万象画境四境画廊04风格20作品经典的另一种可能一幅经典，四种意境" +
             "在光影与想象之间，找到此刻喜欢的风景。点击侧图或箭头切换方向键浏览本地精选画作" +
             "水彩治愈现代都市赛博朋克超现实奇幻";
 
@@ -78,7 +78,7 @@ namespace PicShow.Editor
             root.position = camera != null ? camera.transform.position + camera.transform.forward * 2f : new Vector3(0, 1.36f, 2);
             root.rotation = camera != null ? camera.transform.rotation : Quaternion.identity;
 
-            Text("Eyebrow", root, "经典的另一种可能", new Vector2(0, 600), new Vector2(900, 48), 23, Accent);
+            Text("Eyebrow", root, "万象画境 · 经典的另一种可能", new Vector2(0, 600), new Vector2(1200, 48), 23, Accent);
             Text("Heading", root, "一幅经典，四种意境", new Vector2(0, 528), new Vector2(1500, 90), 64, Ink);
             Text("Introduction", root, "在光影与想象之间，找到此刻喜欢的风景。", new Vector2(0, 460), new Vector2(1600, 50), 26, Muted);
 
@@ -243,8 +243,9 @@ namespace PicShow.Editor
             var swipeSurface = stage.GetComponent<Image>() ?? stage.gameObject.AddComponent<Image>();
             swipeSurface.color = Color.clear;
             swipeSurface.raycastTarget = true;
-            if (stage.GetComponent<PXR_SwipeFrame>() == null)
-                stage.gameObject.AddComponent<PXR_SwipeFrame>();
+            var legacySwipe = stage.GetComponent<PXR_SwipeFrame>();
+            if (legacySwipe != null)
+                UnityEngine.Object.DestroyImmediate(legacySwipe);
             var swipe = stage.GetComponent<GallerySwipeNavigator>() ??
                 stage.gameObject.AddComponent<GallerySwipeNavigator>();
             swipe.Configure(carousel, 0.1f);

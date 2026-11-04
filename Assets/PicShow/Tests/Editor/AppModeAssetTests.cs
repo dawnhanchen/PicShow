@@ -8,6 +8,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit.UI;
@@ -21,6 +22,8 @@ namespace PicShow.Tests
         private const string WallGalleryPrefabPath = "Assets/PicShow/Prefabs/WallGallery.prefab";
         private const string ScenePath = "Assets/Scenes/SampleScene.unity";
         private const string FontPath = "Assets/PicShow/Fonts/ModeChinese SDF.asset";
+        private const string PlaneMaterialPath =
+            "Assets/PICO_MCP/SpatialMesh/TriangleFadeOutFromCenter.mat";
 
         [Test]
         public void ModePanelPrefabHasTwoEnhancedIcons()
@@ -291,6 +294,21 @@ namespace PicShow.Tests
             Assert.That(nonMr, Is.Not.Null);
             Assert.That(mr.rect.width, Is.GreaterThan(64f));
             Assert.That(nonMr.rect.width, Is.GreaterThan(64f));
+        }
+
+        [Test]
+        public void DebugPlaneShaderUsesOneVisibleForwardPass()
+        {
+            var material = AssetDatabase.LoadAssetAtPath<Material>(PlaneMaterialPath);
+            Assert.That(material, Is.Not.Null, PlaneMaterialPath);
+            ShaderData data = ShaderUtil.GetShaderData(material.shader);
+            ShaderData.Subshader subshader = data.GetSerializedSubshader(0);
+            ShaderData.Pass pass = subshader.GetPass(0);
+
+            Assert.That(subshader.PassCount, Is.EqualTo(1),
+                "URP selects one matching forward pass and would skip a second color pass.");
+            Assert.That(pass.FindTagValue(new ShaderTagId("LightMode")).name,
+                Is.EqualTo("UniversalForward"));
         }
 
         [Test]

@@ -55,7 +55,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -115,7 +115,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 
+  m_ActiveFontFeatures:
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
@@ -267,7 +267,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
@@ -342,7 +342,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -402,7 +402,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 
+  m_ActiveFontFeatures:
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -479,7 +479,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
@@ -554,7 +554,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
   m_Material: {fileID: 0}
   m_Color: {r: 0.78, g: 0.81, b: 0.8, a: 1}
@@ -626,7 +626,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -686,7 +686,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 
+  m_ActiveFontFeatures:
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -763,7 +763,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -823,7 +823,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 
+  m_ActiveFontFeatures:
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -900,7 +900,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.6745098, g: 0.7254902, b: 0.7058824, a: 1}
@@ -975,7 +975,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1035,7 +1035,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 
+  m_ActiveFontFeatures:
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -1070,6 +1070,7 @@ GameObject:
   - component: {fileID: 7540510380205507293}
   - component: {fileID: 4635800092503295428}
   - component: {fileID: 7209778792925693325}
+  - component: {fileID: 2364204985415436011}
   m_Layer: 0
   m_Name: Work 5
   m_TagString: Untagged
@@ -1115,7 +1116,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
@@ -1145,7 +1146,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 0
@@ -1189,7 +1190,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
   onSingleClick:
     m_PersistentCalls:
@@ -1200,6 +1201,18 @@ MonoBehaviour:
   onLongPress:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2364204985415436011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279851529395576582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aab01a24db9869489b10e8d20c8f0f4, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: PicShow.PicoInteraction::PicShow.PicoInteraction.PicoButtonHoverGuard
 --- !u!1 &1507052162145057666
 GameObject:
   m_ObjectHideFlags: 0
@@ -1255,7 +1268,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1315,7 +1328,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 
+  m_ActiveFontFeatures:
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -1392,7 +1405,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
   m_Material: {fileID: 0}
   m_Color: {r: 0.78, g: 0.81, b: 0.8, a: 1}
@@ -1464,7 +1477,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.15294118, g: 0.21176471, b: 0.18431373, a: 1}
@@ -1539,7 +1552,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.15294118, g: 0.21176471, b: 0.18431373, a: 1}
@@ -1572,6 +1585,7 @@ GameObject:
   - component: {fileID: 1920457522401727243}
   - component: {fileID: 4183760689288697993}
   - component: {fileID: 726623408314455513}
+  - component: {fileID: 5728606045143139634}
   m_Layer: 0
   m_Name: "Style \u6C34\u5F69\u6CBB\u6108"
   m_TagString: Untagged
@@ -1617,7 +1631,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.75686276, g: 0.87058824, b: 0.80784315, a: 1}
@@ -1647,7 +1661,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 0
@@ -1691,7 +1705,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
   onSingleClick:
     m_PersistentCalls:
@@ -1702,6 +1716,18 @@ MonoBehaviour:
   onLongPress:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5728606045143139634
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853713276490669314}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aab01a24db9869489b10e8d20c8f0f4, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: PicShow.PicoInteraction::PicShow.PicoInteraction.PicoButtonHoverGuard
 --- !u!1 &1862720420631017520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1757,7 +1783,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.15294118, g: 0.21176471, b: 0.18431373, a: 1}
@@ -1832,7 +1858,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.6745098, g: 0.7254902, b: 0.7058824, a: 1}
@@ -1929,7 +1955,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 600}
-  m_SizeDelta: {x: 900, y: 48}
+  m_SizeDelta: {x: 1200, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &700441881588238441
 CanvasRenderer:
@@ -1949,7 +1975,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1959,7 +1985,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u7ECF\u5178\u7684\u53E6\u4E00\u79CD\u53EF\u80FD"
+  m_text: "\u4E07\u8C61\u753B\u5883 \xB7 \u7ECF\u5178\u7684\u53E6\u4E00\u79CD\u53EF\u80FD"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4808c7dc7d1fc4b478bb1ccbaa410739, type: 2}
   m_sharedMaterial: {fileID: -7617300550236151282, guid: 4808c7dc7d1fc4b478bb1ccbaa410739, type: 2}
@@ -2009,7 +2035,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 
+  m_ActiveFontFeatures:
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -2086,7 +2112,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.6745098, g: 0.7254902, b: 0.7058824, a: 1}
@@ -2197,7 +2223,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.CanvasScaler
   m_UiScaleMode: 0
   m_ReferencePixelsPerUnit: 100
@@ -2220,7 +2246,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
   m_IgnoreReversedGraphics: 1
   m_BlockingObjects: 0
@@ -2237,7 +2263,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7951c64acb0fa62458bf30a60089fe2d, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.UI.TrackedDeviceGraphicRaycaster
   m_IgnoreReversedGraphics: 0
   m_CheckFor2DOcclusion: 0
@@ -2256,7 +2282,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d17708417b70e84db887a4f8b363cb9, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: PicShow.Runtime::PicShow.GalleryCarousel
   catalog: {fileID: 11400000, guid: 890da46ebcb0788488a6d3cac866ea61, type: 2}
   cards:
@@ -2326,7 +2352,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 47ccb4f2c0dcd6b4c88738372d52f93d, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: PicShow.PicoInteraction::PicShow.PicoInteraction.GalleryPicoInteractionAdapter
   buttons:
   - {fileID: 4183760689288697993}
@@ -2351,7 +2377,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 725e093b2b8518d4a86aede6dabacb5a, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: PicShow.PicoInteraction::PicShow.PicoInteraction.GalleryControllerNavigator
   gallery: {fileID: 2676976559183199856}
   leftMove: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
@@ -2368,7 +2394,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a2d7d89889b4d94fa1f8d6fe49788e8, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.UI.LazyFollow
   m_Target: {fileID: 0}
   m_TargetOffset: {x: 0, y: 0, z: 2}
@@ -2482,7 +2508,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2542,7 +2568,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 
+  m_ActiveFontFeatures:
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -2619,7 +2645,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2679,7 +2705,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 
+  m_ActiveFontFeatures:
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -2756,7 +2782,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.75686276, g: 0.87058824, b: 0.80784315, a: 1}
@@ -2831,7 +2857,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.29803923, g: 0.35686275, b: 0.32941177, a: 1}
@@ -2906,7 +2932,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.32}
@@ -2981,7 +3007,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
@@ -3054,6 +3080,7 @@ GameObject:
   - component: {fileID: 8544716822771578158}
   - component: {fileID: 826097889240051812}
   - component: {fileID: 8159897745093602279}
+  - component: {fileID: 1955569878091256370}
   m_Layer: 0
   m_Name: "Style \u8D5B\u535A\u670B\u514B"
   m_TagString: Untagged
@@ -3099,7 +3126,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
@@ -3129,7 +3156,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 0
@@ -3173,7 +3200,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
   onSingleClick:
     m_PersistentCalls:
@@ -3184,6 +3211,18 @@ MonoBehaviour:
   onLongPress:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1955569878091256370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4026016418568454431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aab01a24db9869489b10e8d20c8f0f4, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: PicShow.PicoInteraction::PicShow.PicoInteraction.PicoButtonHoverGuard
 --- !u!1 &4245972385299880199
 GameObject:
   m_ObjectHideFlags: 0
@@ -3239,7 +3278,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.32}
@@ -3314,7 +3353,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3324,7 +3363,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4808c7dc7d1fc4b478bb1ccbaa410739, type: 2}
   m_sharedMaterial: {fileID: -7617300550236151282, guid: 4808c7dc7d1fc4b478bb1ccbaa410739, type: 2}
@@ -3374,7 +3413,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 
+  m_ActiveFontFeatures:
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -3451,7 +3490,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3511,7 +3550,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 
+  m_ActiveFontFeatures:
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -3546,6 +3585,7 @@ GameObject:
   - component: {fileID: 6707279087279840180}
   - component: {fileID: 6415056791730142330}
   - component: {fileID: 3243712569113681270}
+  - component: {fileID: 7695855099070876534}
   m_Layer: 0
   m_Name: Work 4
   m_TagString: Untagged
@@ -3591,7 +3631,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
@@ -3621,7 +3661,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 0
@@ -3665,7 +3705,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
   onSingleClick:
     m_PersistentCalls:
@@ -3676,6 +3716,18 @@ MonoBehaviour:
   onLongPress:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7695855099070876534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4688689928550109325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aab01a24db9869489b10e8d20c8f0f4, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: PicShow.PicoInteraction::PicShow.PicoInteraction.PicoButtonHoverGuard
 --- !u!1 &4835022975432781333
 GameObject:
   m_ObjectHideFlags: 0
@@ -3731,7 +3783,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
@@ -3806,7 +3858,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
@@ -3839,6 +3891,7 @@ GameObject:
   - component: {fileID: 3574048242099231424}
   - component: {fileID: 8714521558174629842}
   - component: {fileID: 7737881028893924755}
+  - component: {fileID: 3021087905956501256}
   m_Layer: 0
   m_Name: "Style \u8D85\u73B0\u5B9E\u5947\u5E7B"
   m_TagString: Untagged
@@ -3884,7 +3937,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
@@ -3914,7 +3967,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 0
@@ -3958,7 +4011,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
   onSingleClick:
     m_PersistentCalls:
@@ -3969,6 +4022,18 @@ MonoBehaviour:
   onLongPress:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3021087905956501256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5250977431144556903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aab01a24db9869489b10e8d20c8f0f4, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: PicShow.PicoInteraction::PicShow.PicoInteraction.PicoButtonHoverGuard
 --- !u!1 &5731303562809737927
 GameObject:
   m_ObjectHideFlags: 0
@@ -3980,7 +4045,6 @@ GameObject:
   - component: {fileID: 550017542292345477}
   - component: {fileID: 7415236839784658487}
   - component: {fileID: 4041290150373904686}
-  - component: {fileID: 4659492354666799408}
   - component: {fileID: 2111679855339821061}
   m_Layer: 0
   m_Name: Three card stage
@@ -4029,7 +4093,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
@@ -4049,18 +4113,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &4659492354666799408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5731303562809737927}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd2f71d35fd13814b871a70a44aaf745, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_SwipeFrame
 --- !u!114 &2111679855339821061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4071,7 +4123,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 740ad9040df3d8d4ead2c7e79c8fe8a7, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: PicShow.PicoInteraction::PicShow.PicoInteraction.GallerySwipeNavigator
   gallery: {fileID: 2676976559183199856}
   commitThreshold: 0.1
@@ -4130,7 +4182,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.6745098, g: 0.7254902, b: 0.7058824, a: 1}
@@ -4163,6 +4215,7 @@ GameObject:
   - component: {fileID: 4086666223892831674}
   - component: {fileID: 4791723039564820178}
   - component: {fileID: 493641676681141662}
+  - component: {fileID: 2349898300509524212}
   m_Layer: 0
   m_Name: "Style \u73B0\u4EE3\u90FD\u5E02"
   m_TagString: Untagged
@@ -4208,7 +4261,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
@@ -4238,7 +4291,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 0
@@ -4282,7 +4335,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
   onSingleClick:
     m_PersistentCalls:
@@ -4293,6 +4346,18 @@ MonoBehaviour:
   onLongPress:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2349898300509524212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6180216928742367160}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aab01a24db9869489b10e8d20c8f0f4, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: PicShow.PicoInteraction::PicShow.PicoInteraction.PicoButtonHoverGuard
 --- !u!1 &6306206592621110485
 GameObject:
   m_ObjectHideFlags: 0
@@ -4348,7 +4413,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.29803923, g: 0.35686275, b: 0.32941177, a: 1}
@@ -4381,6 +4446,7 @@ GameObject:
   - component: {fileID: 6477647407652970273}
   - component: {fileID: 5683331144246866017}
   - component: {fileID: 8474745073832442824}
+  - component: {fileID: 4826379450925644676}
   m_Layer: 0
   m_Name: Work 2
   m_TagString: Untagged
@@ -4426,7 +4492,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
@@ -4456,7 +4522,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 0
@@ -4500,7 +4566,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
   onSingleClick:
     m_PersistentCalls:
@@ -4511,6 +4577,18 @@ MonoBehaviour:
   onLongPress:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4826379450925644676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6510717184695739892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aab01a24db9869489b10e8d20c8f0f4, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: PicShow.PicoInteraction::PicShow.PicoInteraction.PicoButtonHoverGuard
 --- !u!1 &6749951243881201490
 GameObject:
   m_ObjectHideFlags: 0
@@ -4566,7 +4644,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4576,7 +4654,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text:
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 4808c7dc7d1fc4b478bb1ccbaa410739, type: 2}
   m_sharedMaterial: {fileID: -7617300550236151282, guid: 4808c7dc7d1fc4b478bb1ccbaa410739, type: 2}
@@ -4626,7 +4704,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 
+  m_ActiveFontFeatures:
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -4661,6 +4739,7 @@ GameObject:
   - component: {fileID: 3349262908710366630}
   - component: {fileID: 5014947881667215796}
   - component: {fileID: 694925477541149242}
+  - component: {fileID: 3749061037640697006}
   m_Layer: 0
   m_Name: Work 3
   m_TagString: Untagged
@@ -4706,7 +4785,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
@@ -4736,7 +4815,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 0
@@ -4780,7 +4859,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
   onSingleClick:
     m_PersistentCalls:
@@ -4791,6 +4870,18 @@ MonoBehaviour:
   onLongPress:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3749061037640697006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6791669875382511263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aab01a24db9869489b10e8d20c8f0f4, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: PicShow.PicoInteraction::PicShow.PicoInteraction.PicoButtonHoverGuard
 --- !u!1 &6869593506943929283
 GameObject:
   m_ObjectHideFlags: 0
@@ -4846,7 +4937,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.75686276, g: 0.87058824, b: 0.80784315, a: 1}
@@ -4921,7 +5012,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1344c3c82d62a2a41a3576d8abb8e3ea, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RawImage
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4951,6 +5042,7 @@ GameObject:
   - component: {fileID: 8862182679295859656}
   - component: {fileID: 2399138336941319432}
   - component: {fileID: 192408936959317506}
+  - component: {fileID: 7991985482527811479}
   m_Layer: 0
   m_Name: Work 1
   m_TagString: Untagged
@@ -4996,7 +5088,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0}
@@ -5026,7 +5118,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 0
@@ -5070,7 +5162,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
   onSingleClick:
     m_PersistentCalls:
@@ -5081,6 +5173,18 @@ MonoBehaviour:
   onLongPress:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7991985482527811479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7100022587857556488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aab01a24db9869489b10e8d20c8f0f4, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: PicShow.PicoInteraction::PicShow.PicoInteraction.PicoButtonHoverGuard
 --- !u!1 &7152653798672503434
 GameObject:
   m_ObjectHideFlags: 0
@@ -5136,7 +5240,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.14117648, g: 0.2, b: 0.18039216, a: 1}
@@ -5211,7 +5315,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5271,7 +5375,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 
+  m_ActiveFontFeatures:
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -5306,6 +5410,7 @@ GameObject:
   - component: {fileID: 4164906012412388060}
   - component: {fileID: 7420779564574098428}
   - component: {fileID: 6250296980769584772}
+  - component: {fileID: 3081481246061157749}
   m_Layer: 0
   m_Name: Card 0
   m_TagString: Untagged
@@ -5356,7 +5461,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 0
@@ -5400,7 +5505,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
   onSingleClick:
     m_PersistentCalls:
@@ -5421,7 +5526,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6690477c11b68024e940dfe4d6480cd1, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: PicShow.PicoInteraction::PicShow.PicoInteraction.GalleryCardHover
   gallery: {fileID: 2676976559183199856}
   card:
@@ -5432,6 +5537,18 @@ MonoBehaviour:
     Button: {fileID: 4164906012412388060}
     Caption: {fileID: 1705710258146282916}
     Number: {fileID: 7783438441677618784}
+--- !u!114 &3081481246061157749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7416021523920356584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aab01a24db9869489b10e8d20c8f0f4, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: PicShow.PicoInteraction::PicShow.PicoInteraction.PicoButtonHoverGuard
 --- !u!1 &8200488018929437250
 GameObject:
   m_ObjectHideFlags: 0
@@ -5487,7 +5604,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.32}
@@ -5520,6 +5637,7 @@ GameObject:
   - component: {fileID: 201002382689169596}
   - component: {fileID: 2421714411324184031}
   - component: {fileID: 2670532814154197178}
+  - component: {fileID: 1703953275904439437}
   m_Layer: 0
   m_Name: Card 1
   m_TagString: Untagged
@@ -5570,7 +5688,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 0
@@ -5614,7 +5732,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
   onSingleClick:
     m_PersistentCalls:
@@ -5635,7 +5753,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6690477c11b68024e940dfe4d6480cd1, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: PicShow.PicoInteraction::PicShow.PicoInteraction.GalleryCardHover
   gallery: {fileID: 2676976559183199856}
   card:
@@ -5646,6 +5764,18 @@ MonoBehaviour:
     Button: {fileID: 201002382689169596}
     Caption: {fileID: 4245597468776827914}
     Number: {fileID: 9175935583033182941}
+--- !u!114 &1703953275904439437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8205857979745793150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aab01a24db9869489b10e8d20c8f0f4, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: PicShow.PicoInteraction::PicShow.PicoInteraction.PicoButtonHoverGuard
 --- !u!1 &8399814167491635133
 GameObject:
   m_ObjectHideFlags: 0
@@ -5659,6 +5789,7 @@ GameObject:
   - component: {fileID: 3997288965052889282}
   - component: {fileID: 199606077158581254}
   - component: {fileID: 4450645422897676946}
+  - component: {fileID: 3195252478180782054}
   m_Layer: 0
   m_Name: Card 2
   m_TagString: Untagged
@@ -5709,7 +5840,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Button
   m_Navigation:
     m_Mode: 0
@@ -5753,7 +5884,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2648b5bcc78d4074911ccd0077bea7d1, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: ByteDance.PICO.Interaction::ByteDance.PICO.Interaction.PXR_EnhancedButton
   onSingleClick:
     m_PersistentCalls:
@@ -5774,7 +5905,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6690477c11b68024e940dfe4d6480cd1, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: PicShow.PicoInteraction::PicShow.PicoInteraction.GalleryCardHover
   gallery: {fileID: 2676976559183199856}
   card:
@@ -5785,6 +5916,18 @@ MonoBehaviour:
     Button: {fileID: 3997288965052889282}
     Caption: {fileID: 6707892076872545}
     Number: {fileID: 66775297135831190}
+--- !u!114 &3195252478180782054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8399814167491635133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aab01a24db9869489b10e8d20c8f0f4, type: 3}
+  m_Name:
+  m_EditorClassIdentifier: PicShow.PicoInteraction::PicShow.PicoInteraction.PicoButtonHoverGuard
 --- !u!1 &8404477993087318003
 GameObject:
   m_ObjectHideFlags: 0
@@ -5840,7 +5983,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -5900,7 +6043,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 
+  m_ActiveFontFeatures:
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -6019,7 +6162,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6079,7 +6222,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 
+  m_ActiveFontFeatures:
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -6156,7 +6299,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6216,7 +6359,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 
+  m_ActiveFontFeatures:
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -6293,7 +6436,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6353,7 +6496,7 @@ MonoBehaviour:
   m_linkedTextComponent: {fileID: 0}
   parentLinkedComponent: {fileID: 0}
   m_enableKerning: 0
-  m_ActiveFontFeatures: 
+  m_ActiveFontFeatures:
   m_enableExtraPadding: 0
   checkPaddingRequired: 0
   m_isRichText: 1
@@ -6430,7 +6573,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
-  m_Name: 
+  m_Name:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
   m_Color: {r: 0.75686276, g: 0.87058824, b: 0.80784315, a: 1}

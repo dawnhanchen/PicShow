@@ -9,18 +9,20 @@ namespace PicShow.PicoInteraction
     // This guard records real pointer hover for the current activation so the
     // click bridge can discard those replayed clicks.
     public sealed class PicoButtonHoverGuard : MonoBehaviour,
-        IPointerEnterHandler, IPointerExitHandler
+        IPointerEnterHandler, IPointerExitHandler, IInteractionModeAware
     {
         private bool hovered;
 
         public bool Hovered => hovered;
 
-        private void OnEnable() => hovered = false;
+        private void OnEnable() => ResetInteractionState();
 
-        private void OnDisable() => hovered = false;
+        private void OnDisable() => ResetInteractionState();
 
         public void OnPointerEnter(PointerEventData eventData) => hovered = true;
 
         public void OnPointerExit(PointerEventData eventData) => hovered = false;
+
+        public void ResetInteractionState() => hovered = false;
     }
 }

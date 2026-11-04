@@ -55,7 +55,8 @@ namespace PicShow.Tests
             Assert.That(right.action.name, Is.EqualTo("Move"));
 
             Transform stage = prefab.transform.Find("Three card stage");
-            Assert.That(stage.GetComponent<PXR_SwipeFrame>(), Is.Not.Null);
+            Assert.That(stage.GetComponent<PXR_SwipeFrame>(), Is.Null,
+                "GallerySwipeNavigator must own swipe state so it can release global ownership.");
             Assert.That(stage.GetComponent<GallerySwipeNavigator>(), Is.Not.Null);
             Assert.That(stage.GetComponent<Image>().raycastTarget, Is.True);
         }
@@ -91,6 +92,79 @@ namespace PicShow.Tests
             finally
             {
                 Object.DestroyImmediate(instance);
+            }
+        }
+
+        [Test]
+        public void EnhancedClickRequiresHoverFromCurrentActivation()
+        {
+            var root = new GameObject("Gallery click guard test");
+            var buttonObject = new GameObject("Button");
+            buttonObject.transform.SetParent(root.transform);
+            try
+            {
+                var button = buttonObject.AddComponent<Button>();
+                var enhanced = buttonObject.AddComponent<PXR_EnhancedButton>();
+                var adapter = root.AddComponent<GalleryPicoInteractionAdapter>();
+                int clickCount = 0;
+                button.onClick.AddListener(() => clickCount++);
+                adapter.Configure(new[] { button });
+
+                enhanced.onSingleClick.Invoke();
+                Assert.That(clickCount, Is.Zero,
+                    "An enhanced click without a current hover must be discarded.");
+
+                var guard = button.GetComponent<PicoButtonHoverGuard>();
+                Assert.That(guard, Is.Not.Null);
+                guard.OnPointerEnter(new PointerEventData(null));
+                enhanced.onSingleClick.Invoke();
+                Assert.That(clickCount, Is.EqualTo(1));
+
+                adapter.Configure(new[] { button });
+                enhanced.onSingleClick.Invoke();
+                Assert.That(clickCount, Is.EqualTo(1),
+                    "Rebinding must require a new pointer enter before accepting clicks.");
+            }
+            finally
+            {
+                Object.DestroyImmediate(root);
+            }
+        }
+
+        [Test]
+        public void InputModeChangeRequiresFreshHoverBeforeEnhancedClick()
+        {
+            var instance = Object.Instantiate(
+                AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath));
+            var managerObject = new GameObject("PICO input mode manager");
+            try
+            {
+                var manager = managerObject.AddComponent<PXR_InteractorManager>();
+                var gallery = instance.GetComponent<GalleryCarousel>();
+                Button button = gallery.Tabs[0].Button;
+                var enhanced = button.GetComponent<PXR_EnhancedButton>();
+                var guard = button.GetComponent<PicoButtonHoverGuard>();
+                var adapter = instance.GetComponent<GalleryPicoInteractionAdapter>();
+                int clickCount = 0;
+                button.onClick.AddListener(() => clickCount++);
+                adapter.Configure(new[] { button });
+
+                manager.CurrentInputMode = XRInputModalityManager.InputMode.TrackedHand;
+                guard.OnPointerEnter(new PointerEventData(null));
+                enhanced.onSingleClick.Invoke();
+                Assert.That(clickCount, Is.EqualTo(1),
+                    "The positive control must prove the enhanced listener is bound.");
+
+                manager.CurrentInputMode = XRInputModalityManager.InputMode.MotionController;
+                enhanced.onSingleClick.Invoke();
+
+                Assert.That(clickCount, Is.EqualTo(1),
+                    "A modality switch must invalidate hover from the previous pointer.");
+            }
+            finally
+            {
+                Object.DestroyImmediate(instance);
+                Object.DestroyImmediate(managerObject);
             }
         }
 
@@ -172,7 +246,7 @@ namespace PicShow.Tests
         }
 
         [Test]
-        public void SwipeNavigatorAcceptsPinchBeforeSampleClaimsSurface()
+        public void SwipeNavigatorIgnoresPinchOutsideHoveredSurface()
         {
             const string scenePath = "Assets/Scenes/SampleScene.unity";
             Scene scene = SceneManager.GetSceneByPath(scenePath);
@@ -213,8 +287,9 @@ namespace PicShow.Tests
                     "activeHand",
                     BindingFlags.NonPublic | BindingFlags.Instance)
                     .GetValue(navigator);
-                Assert.That(activeHand, Is.EqualTo(InteractorHandedness.Left),
-                    "The navigator must remember the pinch until PXR_SwipeFrame claims the surface.");
+                Assert.That(activeHand, Is.EqualTo(InteractorHandedness.None));
+                Assert.That(ScrollObject(), Is.Null,
+                    "A global pinch outside the gallery surface must not claim swipe ownership.");
             }
             finally
             {
@@ -229,6 +304,173 @@ namespace PicShow.Tests
                 if (closeScene)
                     EditorSceneManager.CloseScene(scene, true);
             }
+        }
+
+        [Test]
+        public void SwipeNavigatorReleasesGlobalOwnershipOnDisable()
+        {
+            WithSwipeNavigator((manager, navigator) =>
+            {
+                manager.SetScrollObject(navigator.transform);
+                manager.CurrentAimUpdateType = AimUpdateType.UIScrollbyLeft;
+
+                typeof(GallerySwipeNavigator).GetMethod(
+                        "OnDisable", BindingFlags.NonPublic | BindingFlags.Instance)
+                    .Invoke(navigator, null);
+
+                Assert.That(ScrollObject(), Is.Null);
+                Assert.That(manager.CurrentAimUpdateType, Is.EqualTo(AimUpdateType.EyeGaze));
+            });
+        }
+
+        [Test]
+        public void SwipeNavigatorReleasesGlobalOwnershipWhenInputModeChanges()
+        {
+            WithSwipeNavigator((manager, navigator) =>
+            {
+                manager.CurrentInputMode = XRInputModalityManager.InputMode.TrackedHand;
+                manager.SetScrollObject(navigator.transform);
+                manager.CurrentAimUpdateType = AimUpdateType.UIScrollbyLeft;
+
+                manager.CurrentInputMode = XRInputModalityManager.InputMode.MotionController;
+
+                Assert.That(ScrollObject(), Is.Null);
+                Assert.That(manager.CurrentAimUpdateType, Is.EqualTo(AimUpdateType.EyeGaze));
+            });
+        }
+
+        [Test]
+        public void SwipeNavigatorRequiresFreshHoverAfterInputModeChange()
+        {
+            WithSwipeNavigator((manager, navigator) =>
+            {
+                manager.CurrentInputMode = XRInputModalityManager.InputMode.TrackedHand;
+                var pointer = (IPointerEnterHandler)navigator;
+                pointer.OnPointerEnter(new PointerEventData(null));
+
+                manager.CurrentInputMode = XRInputModalityManager.InputMode.MotionController;
+                manager.CurrentInputMode = XRInputModalityManager.InputMode.TrackedHand;
+                InvokePinch(navigator, "OnPinchDown", InteractorHandedness.Left);
+
+                Assert.That(ActiveHand(navigator), Is.EqualTo(InteractorHandedness.None));
+                Assert.That(ScrollObject(), Is.Null,
+                    "A modality switch must require a new pointer enter before swipe ownership.");
+                Assert.That(manager.CurrentAimUpdateType, Is.EqualTo(AimUpdateType.EyeGaze));
+            });
+        }
+
+        [Test]
+        public void SecondHandTakesSwipeOwnership()
+        {
+            WithSwipeNavigator((manager, navigator) =>
+            {
+                manager.CurrentInputMode = XRInputModalityManager.InputMode.TrackedHand;
+                var pointer = navigator.GetComponent(typeof(IPointerEnterHandler))
+                    as IPointerEnterHandler;
+                Assert.That(pointer, Is.SameAs(navigator),
+                    "The local navigator must own hover before accepting pinch gestures.");
+                pointer.OnPointerEnter(new PointerEventData(null));
+
+                InvokePinch(navigator, "OnPinchDown", InteractorHandedness.Left);
+                Assert.That(ActiveHand(navigator), Is.EqualTo(InteractorHandedness.Left));
+                Assert.That(manager.CurrentAimUpdateType, Is.EqualTo(AimUpdateType.UIScrollbyLeft));
+                Assert.That(ScrollObject(),
+                    Is.EqualTo(navigator.transform));
+
+                InvokePinch(navigator, "OnPinchDown", InteractorHandedness.Right);
+                Assert.That(ActiveHand(navigator), Is.EqualTo(InteractorHandedness.Right));
+                Assert.That(manager.CurrentAimUpdateType, Is.EqualTo(AimUpdateType.UIScrollbyRight));
+
+                InvokePinch(navigator, "OnPinchUp", InteractorHandedness.Left);
+                Assert.That(ActiveHand(navigator), Is.EqualTo(InteractorHandedness.Right));
+                Assert.That(ScrollObject(),
+                    Is.EqualTo(navigator.transform));
+
+                InvokePinch(navigator, "OnPinchUp", InteractorHandedness.Right);
+                Assert.That(ScrollObject(), Is.Null);
+                Assert.That(manager.CurrentAimUpdateType, Is.EqualTo(AimUpdateType.EyeGaze));
+            });
+        }
+
+        private static void WithSwipeNavigator(
+            System.Action<PXR_InteractorManager, GallerySwipeNavigator> test)
+        {
+            const string scenePath = "Assets/Scenes/SampleScene.unity";
+            Scene scene = SceneManager.GetSceneByPath(scenePath);
+            bool closeScene = !scene.isLoaded;
+            if (closeScene)
+                scene = EditorSceneManager.OpenScene(scenePath, OpenSceneMode.Additive);
+
+            GameObject instance = null;
+            PXR_InteractorManager manager = null;
+            XRInputModalityManager.InputMode previousMode = XRInputModalityManager.InputMode.None;
+            AimUpdateType previousAim = AimUpdateType.EyeGaze;
+            var dataProperty = typeof(PXR_InteractorManager).GetProperty(
+                "InteractionData", BindingFlags.Public | BindingFlags.Static);
+            object previousData = dataProperty.GetValue(null);
+            try
+            {
+                manager = scene.GetRootGameObjects()
+                    .SelectMany(root => root.GetComponentsInChildren<PXR_InteractorManager>(true))
+                    .Single();
+                previousMode = manager.CurrentInputMode;
+                previousAim = manager.CurrentAimUpdateType;
+                if (dataProperty.GetValue(null) == null)
+                    dataProperty.SetValue(
+                        null,
+                        System.Activator.CreateInstance(dataProperty.PropertyType));
+
+                instance = Object.Instantiate(
+                    AssetDatabase.LoadAssetAtPath<GameObject>(PrefabPath));
+                var navigator = instance.GetComponentInChildren<GallerySwipeNavigator>();
+                InvokeLifecycle(navigator, "OnDisable");
+                InvokeLifecycle(navigator, "OnEnable");
+                manager.SetScrollObject(null);
+                test(manager, navigator);
+            }
+            finally
+            {
+                if (instance != null)
+                {
+                    var navigator = instance.GetComponentInChildren<GallerySwipeNavigator>();
+                    InvokeLifecycle(navigator, "OnDisable");
+                }
+                if (manager != null)
+                {
+                    manager.SetScrollObject(null);
+                    manager.CurrentAimUpdateType = previousAim;
+                    manager.CurrentInputMode = previousMode;
+                }
+                dataProperty.SetValue(null, previousData);
+                if (instance != null)
+                    Object.DestroyImmediate(instance);
+                if (closeScene)
+                    EditorSceneManager.CloseScene(scene, true);
+            }
+        }
+
+        private static void InvokePinch(GallerySwipeNavigator navigator, string method,
+            InteractorHandedness hand) =>
+            typeof(GallerySwipeNavigator).GetMethod(
+                    method, BindingFlags.NonPublic | BindingFlags.Instance)
+                .Invoke(navigator, new object[] { hand });
+
+        private static InteractorHandedness ActiveHand(GallerySwipeNavigator navigator) =>
+            (InteractorHandedness)typeof(GallerySwipeNavigator).GetField(
+                    "activeHand", BindingFlags.NonPublic | BindingFlags.Instance)
+                .GetValue(navigator);
+
+        private static void InvokeLifecycle(GallerySwipeNavigator navigator, string method) =>
+            typeof(GallerySwipeNavigator).GetMethod(
+                    method, BindingFlags.NonPublic | BindingFlags.Instance)
+                .Invoke(navigator, null);
+
+        private static Transform ScrollObject()
+        {
+            var dataProperty = typeof(PXR_InteractorManager).GetProperty(
+                "InteractionData", BindingFlags.Public | BindingFlags.Static);
+            object data = dataProperty.GetValue(null);
+            return (Transform)data.GetType().GetField("_scrollObject").GetValue(data);
         }
 
         [Test]

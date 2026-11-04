@@ -124,52 +124,16 @@ Shader "Custom/TriangleFadeOutFromCenter"
         }
         ENDHLSL
 
-        // ============================================================
-        // Pass 1:深度预写。LightMode=SRPDefaultUnlit
-        // URP 前向循环里 SRPDefaultUnlit 在 UniversalForward 之前绘制,
-        // 因此这一步先把“最靠前那层”的深度写满深度缓冲。
-        // ============================================================
-        Pass
-        {
-            Name "DepthPrime"
-            Tags { "LightMode" = "SRPDefaultUnlit" }
-
-            ColorMask 0
-            ZWrite On
-            ZTest LEqual
-            Cull Off
-
-            HLSLPROGRAM
-            #pragma target 4.0
-            #pragma vertex vert
-            #pragma geometry geom
-            #pragma fragment fragDepth
-
-            half4 fragDepth (g2f i) : SV_Target
-            {
-                // 只按最终可见度(alpha)决定是否写深度;已淡出区域不写,避免空气墙。
-                float len   = distance(i.worldSpacePosition.xyz, _TargetPosition);
-                float alpha = smoothstep(_AlphaAreaMax, _AlphaAreaMin, len);
-                clip(alpha - _DepthCutoff);
-                return 0;
-            }
-            ENDHLSL
-        }
-
-        // ============================================================
-        // Pass 2:颜色。LightMode=UniversalForward
-        // 深度已被 Pass 1 写满,只有最前层能过 ZTest → 自遮挡与跨物体遮挡成立。
-        // Offset -1,-1 抵消几何着色器重算带来的深度微差,避免整块被剔除。
-        // ============================================================
+        // URP selects one matching pass per DrawObjects invocation. This pass must
+        // therefore write both visible color and depth for the debug wall mesh.
         Pass
         {
             Name "Forward"
             Tags { "LightMode" = "UniversalForward" }
 
             Blend SrcAlpha OneMinusSrcAlpha
-            ZWrite Off
+            ZWrite On
             ZTest LEqual
-            Offset -1, -1
             Cull Off
 
             HLSLPROGRAM
@@ -198,7 +162,7 @@ Shader "Custom/TriangleFadeOutFromCenter"
                 float alpha = smoothstep(_AlphaAreaMax, _AlphaAreaMin, len);
                 finalColor.a *= alpha;
 
-                clip(finalColor.a - _DepthCutoff); // 与 Pass 1 保持一致的丢弃标准
+                clip(finalColor.a - _DepthCutoff);
                 return finalColor;
             }
             ENDHLSL

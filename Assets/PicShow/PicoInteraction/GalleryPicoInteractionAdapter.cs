@@ -12,6 +12,7 @@ namespace PicShow.PicoInteraction
         private sealed class Binding
         {
             public PXR_EnhancedButton Enhanced;
+            public PicoButtonHoverGuard Guard;
             public UnityAction Action;
         }
 
@@ -53,9 +54,16 @@ namespace PicShow.PicoInteraction
 
                 if (enhanced.onSingleClick == null)
                     enhanced.onSingleClick = new UnityEvent();
-                UnityAction action = button.onClick.Invoke;
+                var guard = button.GetComponent<PicoButtonHoverGuard>();
+                if (guard == null)
+                    guard = button.gameObject.AddComponent<PicoButtonHoverGuard>();
+                UnityAction action = () =>
+                {
+                    if (guard != null && guard.Hovered)
+                        button.onClick.Invoke();
+                };
                 enhanced.onSingleClick.AddListener(action);
-                bindings.Add(new Binding { Enhanced = enhanced, Action = action });
+                bindings.Add(new Binding { Enhanced = enhanced, Guard = guard, Action = action });
             }
         }
 
@@ -95,6 +103,11 @@ namespace PicShow.PicoInteraction
                 if (hover != null)
                     hover.ResetPointers();
             }
+            foreach (Binding binding in bindings)
+            {
+                if (binding.Guard != null)
+                    binding.Guard.ResetInteractionState();
+            }
             if (gallery != null)
                 gallery.ClearHover();
         }
@@ -111,6 +124,8 @@ namespace PicShow.PicoInteraction
             {
                 if (binding.Enhanced != null)
                     binding.Enhanced.onSingleClick.RemoveListener(binding.Action);
+                if (binding.Guard != null)
+                    binding.Guard.ResetInteractionState();
             }
             bindings.Clear();
         }

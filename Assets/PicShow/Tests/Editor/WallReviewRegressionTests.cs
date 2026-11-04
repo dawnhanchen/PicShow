@@ -114,6 +114,52 @@ namespace PicShow.Tests
             Assert.That(emitted.Height, Is.EqualTo(4).Within(0.001f));
         }
 
+        [Test]
+        public void PendingRemovalOverridesEarlierUpdate()
+        {
+            var source = Track(new GameObject("Plane source")).AddComponent<DeferredPlaneSource>();
+            Guid id = Guid.NewGuid();
+
+            DeliverPlaneChanges(source,
+                new PxrPlaneData { uuid = id, state = MeshChangeState.Updated });
+            DeliverPlaneChanges(source,
+                new PxrPlaneData { uuid = id, state = MeshChangeState.Removed });
+
+            Assert.That(PendingPlaneChanges(source), Contains.Key(id));
+            Assert.That(PendingPlaneChanges(source)[id].state, Is.EqualTo(MeshChangeState.Removed));
+        }
+
+        [Test]
+        public void UnchangedDoesNotDiscardPendingUpdate()
+        {
+            var source = Track(new GameObject("Plane source")).AddComponent<DeferredPlaneSource>();
+            Guid id = Guid.NewGuid();
+
+            DeliverPlaneChanges(source,
+                new PxrPlaneData { uuid = id, state = MeshChangeState.Updated });
+            DeliverPlaneChanges(source,
+                new PxrPlaneData { uuid = id, state = MeshChangeState.Unchanged });
+
+            Assert.That(PendingPlaneChanges(source), Contains.Key(id));
+            Assert.That(PendingPlaneChanges(source)[id].state, Is.EqualTo(MeshChangeState.Updated));
+        }
+
+        private static void DeliverPlaneChanges(PlaneDetectionManager source,
+            params PxrPlaneData[] changes)
+        {
+            typeof(PlaneDetectionManager).GetProperty(nameof(PlaneDetectionManager.DetectionEnabled))
+                .SetValue(source, true);
+            typeof(PlaneDetectionManager).GetMethod("PXR_OnPlaneDetectionDataUpdated",
+                    BindingFlags.Instance | BindingFlags.NonPublic)
+                .Invoke(source, new object[] { new List<PxrPlaneData>(changes) });
+        }
+
+        private static Dictionary<Guid, PxrPlaneData> PendingPlaneChanges(
+            PlaneDetectionManager source) =>
+            (Dictionary<Guid, PxrPlaneData>)typeof(PlaneDetectionManager)
+                .GetField("needUpdatePlaneList", BindingFlags.Instance | BindingFlags.NonPublic)
+                .GetValue(source);
+
         [TestCase(false)]
         [TestCase(true)]
         public void LateWallCannotReplaceContentUntilBackToSelection(bool staleClick)
