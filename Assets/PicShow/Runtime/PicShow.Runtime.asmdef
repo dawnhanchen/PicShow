@@ -1,5 +1,0 @@
-{
-  "name": "PicShow.Runtime",
-  "rootNamespace": "PicShow",
-  "references": ["Unity.ugui", "Unity.TextMeshPro", "Unity.InputSystem"]
-}

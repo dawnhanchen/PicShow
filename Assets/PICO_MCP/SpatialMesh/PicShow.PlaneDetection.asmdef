@@ -1,9 +1,0 @@
-{
-  "name": "PicShow.PlaneDetection",
-  "rootNamespace": "",
-  "references": [
-    "PicShow.Runtime",
-    "ByteDance.PICO.XR"
-  ],
-  "includePlatforms": []
-}
