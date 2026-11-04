@@ -1,0 +1,122 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8db478ada19bb73408c92407695dba14, type: 3}
+  m_Name: IconConfiguratorConfig
+  m_EditorClassIdentifier: ByteDance.PICO.IconConfigurator.Editor::ByteDance.PICO.IconConfigurator.Editor.IconConfiguratorConfigAsset
+  m_lastMode: 1
+  m_previewYaw: 37
+  m_manual:
+    m_layers:
+    - m_layerKind: 0
+      m_assetGuid: 
+      m_assetPath: 
+      m_originalFileName: 
+      m_contentHash: 
+      m_displayName: Background
+      m_sourceWidth: 0
+      m_sourceHeight: 0
+    - m_layerKind: 1
+      m_assetGuid: 
+      m_assetPath: 
+      m_originalFileName: 
+      m_contentHash: 
+      m_displayName: Foreground1
+      m_sourceWidth: 0
+      m_sourceHeight: 0
+  m_aiSplit:
+    m_flatSource:
+      m_layerKind: 3
+      m_assetGuid: bd339122f16d47e4390be3b848d131df
+      m_assetPath: Assets/IconConfigurator/Imported/flatsource_c39ea723.png
+      m_originalFileName: icon-master-66pct.png
+      m_contentHash: c39ea723430db96d2423041b84729684d8b3b4d921922f748d770e0785c2fb92
+      m_displayName: icon-master-66pct
+      m_sourceWidth: 512
+      m_sourceHeight: 512
+    m_background:
+      m_layerKind: 0
+      m_assetGuid: f432b7e630281c14cbeb913b4ed4100f
+      m_assetPath: Assets/IconConfigurator/Generated/ea2fde002e0c5e9469e63396465735dc/ai-split/cac48593-a9fe-4f78-9ec1-0293c6baf3ee/layers/background.png
+      m_originalFileName: 4d8d3b899d314a2c80305afcfa70ec69~tplv-4it0e6nqdp-png.png
+      m_contentHash: c4618ddf61bdd3bbf3f11bedd86967fc
+      m_displayName: Background
+      m_sourceWidth: 1024
+      m_sourceHeight: 1024
+    m_foreground1:
+      m_layerKind: 1
+      m_assetGuid: 79a315a3ec4672f4a8c4210126cef775
+      m_assetPath: Assets/IconConfigurator/Generated/ea2fde002e0c5e9469e63396465735dc/ai-split/cac48593-a9fe-4f78-9ec1-0293c6baf3ee/layers/foreground1.png
+      m_originalFileName: 311a402a3d3942eb8c4465463de678c9~tplv-4it0e6nqdp-png.png
+      m_contentHash: dacbb47af80e3684bc7c4126030d7574
+      m_displayName: Foreground1
+      m_sourceWidth: 1024
+      m_sourceHeight: 1024
+    m_foreground2:
+      m_layerKind: 2
+      m_assetGuid: 
+      m_assetPath: 
+      m_originalFileName: 
+      m_contentHash: 
+      m_displayName: 
+      m_sourceWidth: 0
+      m_sourceHeight: 0
+    m_hasAcceptedTerms: 1
+    m_status: 3
+    m_errorMessage: 
+    m_errorType: 0
+    m_taskId: cac48593-a9fe-4f78-9ec1-0293c6baf3ee
+    m_requestId: 
+    m_modelVersion: 
+    m_generatedAt: 2026-11-04T03:11:21.3093776Z
+    m_generatedLayers:
+    - m_layerKind: 0
+      m_assetGuid: f432b7e630281c14cbeb913b4ed4100f
+      m_assetPath: Assets/IconConfigurator/Generated/ea2fde002e0c5e9469e63396465735dc/ai-split/cac48593-a9fe-4f78-9ec1-0293c6baf3ee/layers/background.png
+      m_originalFileName: 4d8d3b899d314a2c80305afcfa70ec69~tplv-4it0e6nqdp-png.png
+      m_contentHash: c4618ddf61bdd3bbf3f11bedd86967fc
+      m_displayName: Background
+      m_sourceWidth: 1024
+      m_sourceHeight: 1024
+    - m_layerKind: 1
+      m_assetGuid: 79a315a3ec4672f4a8c4210126cef775
+      m_assetPath: Assets/IconConfigurator/Generated/ea2fde002e0c5e9469e63396465735dc/ai-split/cac48593-a9fe-4f78-9ec1-0293c6baf3ee/layers/foreground1.png
+      m_originalFileName: 311a402a3d3942eb8c4465463de678c9~tplv-4it0e6nqdp-png.png
+      m_contentHash: dacbb47af80e3684bc7c4126030d7574
+      m_displayName: Foreground1
+      m_sourceWidth: 1024
+      m_sourceHeight: 1024
+    m_generatedSdfs:
+    - m_layerKind: 0
+      m_assetGuid: be71f8f4ea46e6f48946a1434d296060
+      m_assetPath: Assets/IconConfigurator/Generated/ea2fde002e0c5e9469e63396465735dc/ai-split/cac48593-a9fe-4f78-9ec1-0293c6baf3ee/sdf/background.png
+      m_originalFileName: 8094e57dc8a1492b9d04b9f71d03c3cd~tplv-4it0e6nqdp-png.png
+      m_contentHash: 7ad00efff941837f0f74566122113b5d
+      m_displayName: Background
+      m_sourceWidth: 1024
+      m_sourceHeight: 1024
+    - m_layerKind: 1
+      m_assetGuid: e5538087dc7a4c34bb570f13962e161c
+      m_assetPath: Assets/IconConfigurator/Generated/ea2fde002e0c5e9469e63396465735dc/ai-split/cac48593-a9fe-4f78-9ec1-0293c6baf3ee/sdf/foreground1.png
+      m_originalFileName: 59966dbb7207415fa2675981b663a81b~tplv-4it0e6nqdp-png.png
+      m_contentHash: 7a2e38b2acce418eb271685b7deb7b9d
+      m_displayName: Foreground1
+      m_sourceWidth: 1024
+      m_sourceHeight: 1024
+  m_localizations:
+  - m_localeCode: en-US
+    m_appName: Myriad Realms
+    m_isDefault: 1
+    m_canRemove: 0
+  - m_localeCode: zh-CN
+    m_appName: "\u4E07\u8C61\u753B\u5883"
+    m_isDefault: 0
+    m_canRemove: 1

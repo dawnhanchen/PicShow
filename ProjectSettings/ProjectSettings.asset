@@ -835,6 +835,7 @@ PlayerSettings:
   webEnableSubmoduleStrippingCompatibility: 0
   scriptingDefineSymbols:
     Android: PICO_SPATIALIZER;ENABLE_PICO_XR_SDK;ENABLE_PICO_INTERACTION_PACK
+    Standalone: ENABLE_PICO_XR_SDK;PICO_SPATIALIZER
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
