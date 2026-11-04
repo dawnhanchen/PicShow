@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest android:installLocation="preferExternal" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+  <application tools:replace="android:icon,android:label" android:icon="@mipmap/ic_spatial_launcher" android:label="@string/icon_configurator_app_name" android:localeConfig="@xml/locales_config">
+    <meta-data android:name="icon.3d.list" android:resource="@array/icon_3d_list" />
+    <meta-data android:name="icon.sdf.list" android:resource="@array/icon_sdf_list" />
+    <activity android:exported="true" android:name="com.unity3d.player.UnityPlayerActivity" android:theme="@style/UnityThemeSelector">
+      <intent-filter>
+        <category android:name="android.intent.category.LAUNCHER" />
+        <action android:name="android.intent.action.MAIN" />
+      </intent-filter>
+      <meta-data android:name="unityplayer.UnityActivity" android:value="true" />
+    </activity>
+  </application>
+</manifest>
