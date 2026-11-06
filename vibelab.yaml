@@ -55,6 +55,7 @@ version:
 build:
   repo_url: https://github.com/dawnhanchen/PicShow
   repo_visibility: public
+  commit_sha: eea572b9da3793dec60b9f98f7c647776185cd89
   tech_stack: unity
   ai_tool: TreaCode
   ai_model: DeepSeek V4 Flash
